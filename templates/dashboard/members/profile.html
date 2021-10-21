@@ -1,0 +1,762 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header" xmlns="http://www.w3.org/1999/html">
+   <h1>
+      Profile settings
+   </h1>
+</section>
+<section class="content">
+   <div class="col-md-12">
+      <div class="block-wrapper">
+         {{status}}
+         <div class="form-block block-profile">
+            Payment methods
+            <div class="form-group" style="width: 40%;">
+               <label for="camp-add-input-4">Payment type:</label>
+               <div class="jq-selectbox jqselect" data-z-index="110">
+                  <div id="camp-add-input-4-styler" class="jq-selectbox jqselect" style="position: relative; z-index:100">
+                     <select class="form-control" name="paymentmethod" id="camp-add-input-4-payment-m" >
+                        <option value="paypal">PayPal</option>
+                        <!--<option value="wire">Wire</option>-->
+                        <!--<option value="epayments">e-Payments</option>-->
+                        <!--<option value="payoneer">Payoneer</option>-->
+                        <!--<option value="webmoney">WebMoney</option>-->
+                     </select>
+                     <div class="jq-selectbox__dropdown" style="position: absolute; display: none;">
+                     </div>
+                  </div>
+               </div>
+               <div class="js_paypal" style="display:none">
+                  <br>
+                  <a href="#" onclick="$('#paypal-commission').show().children('div').show()">PayPal fee</a>
+                  <div class="modal-overlay" id="paypal-commission" style="display: none">
+                     <div class="modal-window">
+                        <span class="modal-close" onclick="$(this).parent().parent().hide();"></span>
+                        <h2 class="modal-title"><b>PayPal fee</b></h2>
+                        <div class="modal-text">
+                           <p>When withdrawing money to your account, a fee is charged.The fee is paid by the payee </p>
+                           <p>The fee amount for each transaction is 4.5%</p>
+                        </div>
+                        <div class="modal-footer">
+                           <button class="modal-btn" type="button" onclick="$('#paypal-commission').hide();">OK</button>
+                        </div>
+                     </div>
+                  </div>
+                  <form  method="post">
+                     {% csrf_token%}
+                     <div class="row" id="tab-paypal">
+                        <input type="hidden" name="type" value="paypal"/>
+                        <div class="form-group col-md-6">
+                           <label for="pp_currency">Account currency:</label>
+                           <div class="jq-selectbox jqselect" style="position: relative; /*z-index:100*/">
+                              <div class="jq-selectbox jqselect block block-custom-select option" >
+                                 <select class="form-control"  name="currency" class="block block-custom-select" inputid="pp_currency">
+                                    <option value="USD" selected="selected" class="block block-custom-select option">USD</option>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="pp_cnr_id">Country:</label>
+                           <div class="jq-selectbox jqselect" style="position: relative; z-index:100">
+                              <div class="jq-selectbox jqselect" style="position: relative; z-index:100">
+                                 <select name="country" required="" class="form-control" >
+                                    <option value="" selected="selected" id="pp_cnr_id-0"></option>
+                                    <option value="299" id="pp_cnr_id-1">Afghanistan</option>
+                                    <option value="405" id="pp_cnr_id-2">Åland Islands</option>
+                                    <option value="366" id="pp_cnr_id-3">Albania</option>
+                                    <option value="242" id="pp_cnr_id-4">Algeria</option>
+                                    <option value="364" id="pp_cnr_id-5">American Samoa</option>
+                                    <option value="367" id="pp_cnr_id-6">Andorra</option>
+                                    <option value="243" id="pp_cnr_id-7">Angola</option>
+                                    <option value="422" id="pp_cnr_id-8">Anguilla</option>
+                                    <option value="464" id="pp_cnr_id-9">Antarctica</option>
+                                    <option value="423" id="pp_cnr_id-10">Antigua &amp; Barbuda</option>
+                                    <option value="424" id="pp_cnr_id-11">Argentina</option>
+                                    <option value="417" id="pp_cnr_id-12">Armenia</option>
+                                    <option value="425" id="pp_cnr_id-13">Aruba</option>
+                                    <option value="17" id="pp_cnr_id-14">Australia</option>
+                                    <option value="365" id="pp_cnr_id-15">Austria</option>
+                                    <option value="416" id="pp_cnr_id-16">Azerbaijan</option>
+                                    <option value="426" id="pp_cnr_id-17">Bahamas</option>
+                                    <option value="301" id="pp_cnr_id-18">Bahrain</option>
+                                    <option value="300" id="pp_cnr_id-19">Bangladesh</option>
+                                    <option value="427" id="pp_cnr_id-20">Barbados</option>
+                                    <option value="14" id="pp_cnr_id-21">Belarus</option>
+                                    <option value="368" id="pp_cnr_id-22">Belgium</option>
+                                    <option value="428" id="pp_cnr_id-23">Belize</option>
+                                    <option value="244" id="pp_cnr_id-24">Benin</option>
+                                    <option value="407" id="pp_cnr_id-25">Bermuda</option>
+                                    <option value="303" id="pp_cnr_id-26">Bhutan</option>
+                                    <option value="429" id="pp_cnr_id-27">Bolivia</option>
+                                    <option value="370" id="pp_cnr_id-28">Bosnia &amp; Herzegovina</option>
+                                    <option value="245" id="pp_cnr_id-29">Botswana</option>
+                                    <option value="466" id="pp_cnr_id-30">Bouvet Island</option>
+                                    <option value="462" id="pp_cnr_id-31">Brazil</option>
+                                    <option value="363" id="pp_cnr_id-32">British Indian Ocean Territory</option>
+                                    <option value="430" id="pp_cnr_id-33">British Virgin Islands</option>
+                                    <option value="302" id="pp_cnr_id-34">Brunei</option>
+                                    <option value="369" id="pp_cnr_id-35">Bulgaria</option>
+                                    <option value="246" id="pp_cnr_id-36">Burkina Faso</option>
+                                    <option value="247" id="pp_cnr_id-37">Burundi</option>
+                                    <option value="313" id="pp_cnr_id-38">Cambodia</option>
+                                    <option value="260" id="pp_cnr_id-39">Cameroon</option>
+                                    <option value="411" id="pp_cnr_id-40">Canada</option>
+                                    <option value="259" id="pp_cnr_id-41">Cape Verde</option>
+                                    <option value="465" id="pp_cnr_id-42">Caribbean Netherlands</option>
+                                    <option value="439" id="pp_cnr_id-43">Cayman Islands</option>
+                                    <option value="293" id="pp_cnr_id-44">Central African Republic</option>
+                                    <option value="294" id="pp_cnr_id-45">Chad</option>
+                                    <option value="458" id="pp_cnr_id-46">Chile</option>
+                                    <option value="6" id="pp_cnr_id-47">China</option>
+                                    <option value="326" id="pp_cnr_id-48">Christmas Island</option>
+                                    <option value="359" id="pp_cnr_id-49">Cocos (Keeling) Islands</option>
+                                    <option value="440" id="pp_cnr_id-50">Colombia</option>
+                                    <option value="262" id="pp_cnr_id-51">Comoros</option>
+                                    <option value="263" id="pp_cnr_id-52">Congo - Brazzaville</option>
+                                    <option value="253" id="pp_cnr_id-53">Congo - Kinshasa</option>
+                                    <option value="351" id="pp_cnr_id-54">Cook Islands</option>
+                                    <option value="412" id="pp_cnr_id-55">Costa Rica</option>
+                                    <option value="264" id="pp_cnr_id-56">Côte d’Ivoire</option>
+                                    <option value="399" id="pp_cnr_id-57">Croatia</option>
+                                    <option value="467" id="pp_cnr_id-58">Cuba</option>
+                                    <option value="468" id="pp_cnr_id-59">Curaçao</option>
+                                    <option value="10" id="pp_cnr_id-60">Cyprus</option>
+                                    <option value="401" id="pp_cnr_id-61">Czech-Republic</option>
+                                    <option value="377" id="pp_cnr_id-62">Denmark</option>
+                                    <option value="254" id="pp_cnr_id-63">Djibouti</option>
+                                    <option value="438" id="pp_cnr_id-64">Dominica</option>
+                                    <option value="437" id="pp_cnr_id-65">Dominican Republic</option>
+                                    <option value="459" id="pp_cnr_id-66">Ecuador</option>
+                                    <option value="255" id="pp_cnr_id-67">Egypt</option>
+                                    <option value="460" id="pp_cnr_id-68">El Salvador</option>
+                                    <option value="295" id="pp_cnr_id-69">Equatorial Guinea</option>
+                                    <option value="296" id="pp_cnr_id-70">Eritrea</option>
+                                    <option value="406" id="pp_cnr_id-71">Estonia</option>
+                                    <option value="297" id="pp_cnr_id-72">Ethiopia</option>
+                                    <option value="456" id="pp_cnr_id-73">Falkland Islands</option>
+                                    <option value="396" id="pp_cnr_id-74">Faroe Islands</option>
+                                    <option value="339" id="pp_cnr_id-75">Fiji</option>
+                                    <option value="397" id="pp_cnr_id-76">Finland</option>
+                                    <option value="398" id="pp_cnr_id-77">France</option>
+                                    <option value="457" id="pp_cnr_id-78">French Guiana</option>
+                                    <option value="338" id="pp_cnr_id-79">French Polynesia</option>
+                                    <option value="469" id="pp_cnr_id-80">French Southern Territories</option>
+                                    <option value="248" id="pp_cnr_id-81">Gabon</option>
+                                    <option value="249" id="pp_cnr_id-82">Gambia</option>
+                                    <option value="418" id="pp_cnr_id-83">Georgia</option>
+                                    <option value="13" id="pp_cnr_id-84">Germany</option>
+                                    <option value="250" id="pp_cnr_id-85">Ghana</option>
+                                    <option value="374" id="pp_cnr_id-86">Gibraltar</option>
+                                    <option value="376" id="pp_cnr_id-87">Greece</option>
+                                    <option value="410" id="pp_cnr_id-88">Greenland</option>
+                                    <option value="436" id="pp_cnr_id-89">Grenada</option>
+                                    <option value="435" id="pp_cnr_id-90">Guadeloupe</option>
+                                    <option value="361" id="pp_cnr_id-91">Guam</option>
+                                    <option value="408" id="pp_cnr_id-92">Guatemala</option>
+                                    <option value="373" id="pp_cnr_id-93">Guernsey</option>
+                                    <option value="252" id="pp_cnr_id-94">Guinea</option>
+                                    <option value="251" id="pp_cnr_id-95">Guinea-Bissau</option>
+                                    <option value="434" id="pp_cnr_id-96">Guyana</option>
+                                    <option value="433" id="pp_cnr_id-97">Haiti</option>
+                                    <option value="470" id="pp_cnr_id-98">Heard &amp; McDonald Islands</option>
+                                    <option value="409" id="pp_cnr_id-99">Honduras</option>
+                                    <option value="305" id="pp_cnr_id-100">Hong Kong SAR China</option>
+                                    <option value="372" id="pp_cnr_id-101">Hungary</option>
+                                    <option value="380" id="pp_cnr_id-102">Iceland</option>
+                                    <option value="307" id="pp_cnr_id-103">India</option>
+                                    <option value="308" id="pp_cnr_id-104">Indonesia</option>
+                                    <option value="311" id="pp_cnr_id-105">Iran</option>
+                                    <option value="310" id="pp_cnr_id-106">Iraq</option>
+                                    <option value="379" id="pp_cnr_id-107">Ireland</option>
+                                    <option value="388" id="pp_cnr_id-108">Isle of Man</option>
+                                    <option value="306" id="pp_cnr_id-109">Israel</option>
+                                    <option value="11" id="pp_cnr_id-110">Italy</option>
+                                    <option value="461" id="pp_cnr_id-111">Jamaica</option>
+                                    <option value="7" id="pp_cnr_id-112">Japan</option>
+                                    <option value="378" id="pp_cnr_id-113">Jersey</option>
+                                    <option value="309" id="pp_cnr_id-114">Jordan</option>
+                                    <option value="15" id="pp_cnr_id-115">Kazakhstan</option>
+                                    <option value="261" id="pp_cnr_id-116">Kenya</option>
+                                    <option value="360" id="pp_cnr_id-117">Kiribati</option>
+                                    <option value="315" id="pp_cnr_id-118">Kuwait</option>
+                                    <option value="419" id="pp_cnr_id-119">Kyrgyzstan</option>
+                                    <option value="316" id="pp_cnr_id-120">Laos</option>
+                                    <option value="382" id="pp_cnr_id-121">Latvia</option>
+                                    <option value="317" id="pp_cnr_id-122">Lebanon</option>
+                                    <option value="265" id="pp_cnr_id-123">Lesotho</option>
+                                    <option value="266" id="pp_cnr_id-124">Liberia</option>
+                                    <option value="267" id="pp_cnr_id-125">Libya</option>
+                                    <option value="384" id="pp_cnr_id-126">Liechtenstein</option>
+                                    <option value="383" id="pp_cnr_id-127">Lithuania</option>
+                                    <option value="385" id="pp_cnr_id-128">Luxembourg</option>
+                                    <option value="318" id="pp_cnr_id-129">Macau SAR China</option>
+                                    <option value="390" id="pp_cnr_id-130">Macedonia</option>
+                                    <option value="270" id="pp_cnr_id-131">Madagascar</option>
+                                    <option value="272" id="pp_cnr_id-132">Malawi</option>
+                                    <option value="319" id="pp_cnr_id-133">Malaysia</option>
+                                    <option value="320" id="pp_cnr_id-134">Maldives</option>
+                                    <option value="273" id="pp_cnr_id-135">Mali</option>
+                                    <option value="386" id="pp_cnr_id-136">Malta</option>
+                                    <option value="357" id="pp_cnr_id-137">Marshall Islands</option>
+                                    <option value="441" id="pp_cnr_id-138">Martinique</option>
+                                    <option value="269" id="pp_cnr_id-139">Mauritania</option>
+                                    <option value="268" id="pp_cnr_id-140">Mauritius</option>
+                                    <option value="271" id="pp_cnr_id-141">Mayotte</option>
+                                    <option value="463" id="pp_cnr_id-142">Mexico</option>
+                                    <option value="356" id="pp_cnr_id-143">Micronesia</option>
+                                    <option value="16" id="pp_cnr_id-144">Moldova</option>
+                                    <option value="387" id="pp_cnr_id-145">Monaco</option>
+                                    <option value="321" id="pp_cnr_id-146">Mongolia</option>
+                                    <option value="400" id="pp_cnr_id-147">Montenegro</option>
+                                    <option value="442" id="pp_cnr_id-148">Montserrat</option>
+                                    <option value="274" id="pp_cnr_id-149">Morocco</option>
+                                    <option value="275" id="pp_cnr_id-150">Mozambique</option>
+                                    <option value="322" id="pp_cnr_id-151">Myanmar (Burma)</option>
+                                    <option value="276" id="pp_cnr_id-152">Namibia</option>
+                                    <option value="355" id="pp_cnr_id-153">Nauru</option>
+                                    <option value="323" id="pp_cnr_id-154">Nepal</option>
+                                    <option value="375" id="pp_cnr_id-155">Netherlands</option>
+                                    <option value="352" id="pp_cnr_id-156">New Caledonia</option>
+                                    <option value="353" id="pp_cnr_id-157">New Zealand</option>
+                                    <option value="471" id="pp_cnr_id-158">Nicaragua</option>
+                                    <option value="278" id="pp_cnr_id-159">Niger</option>
+                                    <option value="277" id="pp_cnr_id-160">Nigeria</option>
+                                    <option value="354" id="pp_cnr_id-161">Niue</option>
+                                    <option value="350" id="pp_cnr_id-162">Norfolk Island</option>
+                                    <option value="330" id="pp_cnr_id-163">North Korea</option>
+                                    <option value="345" id="pp_cnr_id-164">Northern Mariana Islands</option>
+                                    <option value="12" id="pp_cnr_id-165">Norway</option>
+                                    <option value="325" id="pp_cnr_id-166">Oman</option>
+                                    <option value="327" id="pp_cnr_id-167">Pakistan</option>
+                                    <option value="349" id="pp_cnr_id-168">Palau</option>
+                                    <option value="328" id="pp_cnr_id-169">Palestinian Territories</option>
+                                    <option value="414" id="pp_cnr_id-170">Panama</option>
+                                    <option value="348" id="pp_cnr_id-171">Papua New Guinea</option>
+                                    <option value="446" id="pp_cnr_id-172">Paraguay</option>
+                                    <option value="447" id="pp_cnr_id-173">Peru</option>
+                                    <option value="336" id="pp_cnr_id-174">Philippines</option>
+                                    <option value="347" id="pp_cnr_id-175">Pitcairn Islands</option>
+                                    <option value="4" id="pp_cnr_id-176">Poland</option>
+                                    <option value="389" id="pp_cnr_id-177">Portugal</option>
+                                    <option value="448" id="pp_cnr_id-178">Puerto Rico</option>
+                                    <option value="314" id="pp_cnr_id-179">Qatar</option>
+                                    <option value="279" id="pp_cnr_id-180">Réunion</option>
+                                    <option value="391" id="pp_cnr_id-181">Romania</option>
+                                    <option value="1" id="pp_cnr_id-182">Russia</option>
+                                    <option value="280" id="pp_cnr_id-183">Rwanda</option>
+                                    <option value="346" id="pp_cnr_id-184">Samoa</option>
+                                    <option value="392" id="pp_cnr_id-185">San Marino</option>
+                                    <option value="281" id="pp_cnr_id-186">São Tomé &amp; Príncipe</option>
+                                    <option value="329" id="pp_cnr_id-187">Saudi Arabia</option>
+                                    <option value="285" id="pp_cnr_id-188">Senegal</option>
+                                    <option value="393" id="pp_cnr_id-189">Serbia</option>
+                                    <option value="284" id="pp_cnr_id-190">Seychelles</option>
+                                    <option value="288" id="pp_cnr_id-191">Sierra Leone</option>
+                                    <option value="331" id="pp_cnr_id-192">Singapore</option>
+                                    <option value="472" id="pp_cnr_id-193">Sint Maarten</option>
+                                    <option value="394" id="pp_cnr_id-194">Slovakia</option>
+                                    <option value="395" id="pp_cnr_id-195">Slovenia</option>
+                                    <option value="344" id="pp_cnr_id-196">Solomon Islands</option>
+                                    <option value="286" id="pp_cnr_id-197">Somalia</option>
+                                    <option value="298" id="pp_cnr_id-198">South Africa</option>
+                                    <option value="473" id="pp_cnr_id-199">South Georgia &amp; South Sandwich Islands</option>
+                                    <option value="474" id="pp_cnr_id-200">South Sudan</option>
+                                    <option value="9" id="pp_cnr_id-201">South-Korea</option>
+                                    <option value="18" id="pp_cnr_id-202">Spain</option>
+                                    <option value="337" id="pp_cnr_id-203">Sri Lanka</option>
+                                    <option value="449" id="pp_cnr_id-204">St. Barthélemy</option>
+                                    <option value="283" id="pp_cnr_id-205">St. Helena</option>
+                                    <option value="451" id="pp_cnr_id-206">St. Kitts &amp; Nevis</option>
+                                    <option value="452" id="pp_cnr_id-207">St. Lucia</option>
+                                    <option value="445" id="pp_cnr_id-208">St. Martin</option>
+                                    <option value="415" id="pp_cnr_id-209">St. Pierre &amp; Miquelon</option>
+                                    <option value="450" id="pp_cnr_id-210">St. Vincent &amp; Grenadines</option>
+                                    <option value="287" id="pp_cnr_id-211">Sudan</option>
+                                    <option value="453" id="pp_cnr_id-212">Suriname</option>
+                                    <option value="404" id="pp_cnr_id-213">Svalbard &amp; Jan Mayen</option>
+                                    <option value="282" id="pp_cnr_id-214">Swaziland</option>
+                                    <option value="403" id="pp_cnr_id-215">Sweden</option>
+                                    <option value="402" id="pp_cnr_id-216">Switzerland</option>
+                                    <option value="332" id="pp_cnr_id-217">Syria</option>
+                                    <option value="334" id="pp_cnr_id-218">Taiwan</option>
+                                    <option value="420" id="pp_cnr_id-219">Tajikistan</option>
+                                    <option value="289" id="pp_cnr_id-220">Tanzania</option>
+                                    <option value="333" id="pp_cnr_id-221">Thailand</option>
+                                    <option value="335" id="pp_cnr_id-222">Timor-Leste</option>
+                                    <option value="290" id="pp_cnr_id-223">Togo</option>
+                                    <option value="343" id="pp_cnr_id-224">Tokelau</option>
+                                    <option value="342" id="pp_cnr_id-225">Tonga</option>
+                                    <option value="454" id="pp_cnr_id-226">Trinidad &amp; Tobago</option>
+                                    <option value="291" id="pp_cnr_id-227">Tunisia</option>
+                                    <option value="5" id="pp_cnr_id-228">Turkey</option>
+                                    <option value="8" id="pp_cnr_id-229">Turkmenistan</option>
+                                    <option value="444" id="pp_cnr_id-230">Turks &amp; Caicos Islands</option>
+                                    <option value="341" id="pp_cnr_id-231">Tuvalu</option>
+                                    <option value="358" id="pp_cnr_id-232">U.S. Outlying Islands</option>
+                                    <option value="432" id="pp_cnr_id-233">U.S. Virgin Islands</option>
+                                    <option value="292" id="pp_cnr_id-234">Uganda</option>
+                                    <option value="2" id="pp_cnr_id-235">Ukraine</option>
+                                    <option value="0" id="pp_cnr_id-236">Undefined</option>
+                                    <option value="324" id="pp_cnr_id-237">United Arab Emirates</option>
+                                    <option value="3" id="pp_cnr_id-238">United States</option>
+                                    <option value="19" id="pp_cnr_id-239">United-Kingdom</option>
+                                    <option value="455" id="pp_cnr_id-240">Uruguay</option>
+                                    <option value="421" id="pp_cnr_id-241">Uzbekistan</option>
+                                    <option value="362" id="pp_cnr_id-242">Vanuatu</option>
+                                    <option value="371" id="pp_cnr_id-243">Vatican City</option>
+                                    <option value="431" id="pp_cnr_id-244">Venezuela</option>
+                                    <option value="304" id="pp_cnr_id-245">Vietnam</option>
+                                    <option value="340" id="pp_cnr_id-246">Wallis &amp; Futuna</option>
+                                    <option value="257" id="pp_cnr_id-247">Western Sahara</option>
+                                    <option value="312" id="pp_cnr_id-248">Yemen</option>
+                                    <option value="256" id="pp_cnr_id-249">Zambia</option>
+                                    <option value="258" id="pp_cnr_id-250">Zimbabwe</option>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="pp_payment_threshold">Payment threshold:</label>
+                           <input type="text" name="paymentthreshold" class="field js-add-site form-control" id="pp_payment_threshold" autocomplete="off" tabindex="5" value="50" aria-required="true">
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="pp_payee_name">Payee name:</label>
+                           <input type="text" name="payeename" class="field js-add-site form-control" id="pp_payee_name" autocomplete="off" tabindex="5" value="" aria-required="true">
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="pp_paypal_email">PayPal Email:</label>
+                           <input type="email" name="paypalemail" required class="field js-add-site form-control" id="pp_paypal_email" autocomplete="off" tabindex="5" value="" aria-required="true">
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="pp_phone">Phone:</label>
+                           <input type="text" name="payeephone"  required class="field js-add-site form-control" id="pp_phone" value=""/>
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="pp_billing_address">Payee address:</label>
+                           <textarea name="payeeaddress" required class="field js-add-site form-control" id="pp_billing_address" rows="5" aria-required="true"></textarea>
+                        </div>
+                     </div>
+                     <div class="js_additional_fields show">
+                        <div class="form-group">
+                           <label for="confirm_pass" class="required" aria-required="true">Your password (Viral-Lift):</label><br>
+                           <input type="password" name="password" class="field js-add-site " id="confirm_pass" autocomplete="off" tabindex="5" value="" aria-required="true">
+                        </div>
+                        <div class="form-group">
+                           <button type="submit" class="btn btn-header">Save</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+               <div class="js_webmoney" style="display:none">
+                  <br>
+                  <a href="#" onclick="$('#webmoney-commission').show().children('div').show()">WebMoney fee</a>
+                  <div class="modal-overlay" id="webmoney-commission" style="display: none">
+                     <div class="modal-window">
+                        <span class="modal-close" onclick="$(this).parent().parent().hide();"></span>
+                        <h2 class="modal-title"><b>WebMoney fee</b></h2>
+                        <form class="modal-body" action="#">
+                           <div class="modal-text">
+                              <p>When withdrawing money to your account, a fee is charged. The fee is paid by the payee.</p>
+                              <p>The fee amount for each transaction is 2%</p>
+                           </div>
+                           <div class="modal-footer">
+                              <button class="modal-btn" type="button" onclick="$('#webmoney-commission').hide();">OK</button>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <form  method="post">
+                     {% csrf_token%}
+                     <div class="row" id="tab-webmoney">
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <label for="settings_name">Payment currency:</label>
+                              <div class="jq-selectbox jqselect" style="position: relative; z-index:100">
+                                 <div class="jq-selectbox jqselect block block-custom-select option" style="position: relative; z-index:100">
+                                    <select class="form-control" name="currency" class="block block-custom-select" inputid="wm_currency">
+                                       <option value="USD" selected="selected" class="block block-custom-select option">USD</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                            <input type="hidden" name="type" value="webmoney"/>
+                           <div class="form-group">
+                              <label for="pp_payment_threshold">Payment threshold:</label>
+                              <input type="text" name="paymentthreshold" class="field form-control" id="wm_payment_threshold" autocomplete="off" tabindex="5" value="20" required="" aria-required="true">
+                              <span id="errmsg" style="display: none; color: red;"></span>
+                              <label>Minimal payment threshold is 20.00</label>
+                           </div>
+                           <div class="form-group">
+                              <label for="pp_payee_name">WMZ:</label>
+                              <input type="text" name="wmz" class="field form-control" id="wm_wmz" autocomplete="off" tabindex="5" value="" required="" aria-required="true">
+                              <label class="errorLable" for="wm_wmz">Please, fill correct field. Example: Z123456789999<span></span></label>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="js_additional_fields show">
+                        <div class="form-group">
+                           <label for="confirm_pass" class="required" aria-required="true">Your password (Viral-Lift):</label><br>
+                           <input type="password" name="password" class="field js-add-site " id="confirm_pass" autocomplete="off" tabindex="5" value="" aria-required="true">
+                        </div>
+                        <div class="form-group">
+                           <button type="submit" class="btn btn-header">Save</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+               <div class="js_epayments" style="display:none">
+                   <form  method="post">
+                     {% csrf_token%}
+                  <div class="form-group">
+                     <label for="ep_payment_threshold">Payment threshold:</label><br>
+                     <input name="paymentthreshold" class="field valid" id="ep_payment_threshold" autocomplete="off" tabindex="5" value="20.00" aria-required="true" type="text" aria-invalid="false">
+                  </div>
+                   <input type="hidden" name="type" value="Epayment"/>
+                  <div class="form-group">
+                     <label for="ep_ewallet" class="required" aria-required="true">E-wallet:</label><br>
+                     <input name="ewallet" class="field" id="ep_ewallet" autocomplete="off" tabindex="5" value="" aria-required="true" type="text">
+                  </div>
+                   <div class="js_additional_fields show">
+                        <div class="form-group">
+                           <label for="confirm_pass" class="required" aria-required="true">Your password (Viral-Lift):</label><br>
+                           <input type="password" name="password" class="field js-add-site " id="confirm_pass" autocomplete="off" tabindex="5" value="" aria-required="true">
+                        </div>
+                        <div class="form-group">
+                           <button type="submit" class="btn btn-header">Save</button>
+                        </div>
+                     </div>
+                   </form>
+               </div>
+               <div class="js_payoneer">
+               <form  method="post">
+                     {% csrf_token%}
+                  <input name="BillingData[pn_currency]" value="USD" id="pn_currency" class="" style="display: inline-block;" type="hidden">
+                  <div class="form-group">
+                     <label for="pn_payment_threshold">Payment threshold:</label><br>
+                     <input name="paymentthreshold" class="field" id="pn_payment_threshold" autocomplete="off" tabindex="5" value="20.00" aria-required="true" type="text">
+                  </div>
+                   <input type="hidden" name="type" value="Payoneer"/>
+                  <div class="form-row">
+                     <label for="pn_payee_name" class="required" aria-required="true">Payee name:</label>
+                     <i class="icon info-icon" data-ot="Enter the name of the payee"></i><br>
+                     <input type="text" name="payeename" class="field" id="pn_name" autocomplete="off" tabindex="5" value="" aria-required="true">
+                  </div>
+                  <div class="form-row">
+                     <label for="pn_cnr_id" class="required" aria-required="true">Country:</label>
+                     <i class="icon info-icon" data-ot="Enter country of actual residence of the payee"></i><br>
+                     <div id="pn_cnr_id-styler" class="jq-selectbox jqselect select2-custom changed" style="position: relative; z-index: 99;">
+                        <div class="jq-selectbox__dropdown">
+                           <select class="form-control" name="country" id="pn_cnr_id" class="select2-custom" >
+                              <option value="299" id="pn_cnr_id-1">Afghanistan</option>
+                              <option value="405" id="pn_cnr_id-2">Åland Islands</option>
+                              <option value="366" id="pn_cnr_id-3">Albania</option>
+                              <option value="242" id="pn_cnr_id-4">Algeria</option>
+                              <option value="364" id="pn_cnr_id-5">American Samoa</option>
+                              <option value="367" id="pn_cnr_id-6">Andorra</option>
+                              <option value="243" id="pn_cnr_id-7">Angola</option>
+                              <option value="422" id="pn_cnr_id-8">Anguilla</option>
+                              <option value="464" id="pn_cnr_id-9">Antarctica</option>
+                              <option value="423" id="pn_cnr_id-10">Antigua &amp; Barbuda</option>
+                              <option value="424" id="pn_cnr_id-11">Argentina</option>
+                              <option value="417" id="pn_cnr_id-12">Armenia</option>
+                              <option value="425" id="pn_cnr_id-13">Aruba</option>
+                              <option value="17" id="pn_cnr_id-14">Australia</option>
+                              <option value="365" id="pn_cnr_id-15">Austria</option>
+                              <option value="416" id="pn_cnr_id-16">Azerbaijan</option>
+                              <option value="426" id="pn_cnr_id-17">Bahamas</option>
+                              <option value="301" id="pn_cnr_id-18">Bahrain</option>
+                              <option value="300" id="pn_cnr_id-19">Bangladesh</option>
+                              <option value="427" id="pn_cnr_id-20">Barbados</option>
+                              <option value="14" id="pn_cnr_id-21">Belarus</option>
+                              <option value="368" id="pn_cnr_id-22">Belgium</option>
+                              <option value="428" id="pn_cnr_id-23">Belize</option>
+                              <option value="244" id="pn_cnr_id-24">Benin</option>
+                              <option value="407" id="pn_cnr_id-25">Bermuda</option>
+                              <option value="303" id="pn_cnr_id-26">Bhutan</option>
+                              <option value="429" id="pn_cnr_id-27">Bolivia</option>
+                              <option value="370" id="pn_cnr_id-28">Bosnia &amp; Herzegovina</option>
+                              <option value="245" id="pn_cnr_id-29">Botswana</option>
+                              <option value="466" id="pn_cnr_id-30">Bouvet Island</option>
+                              <option value="462" id="pn_cnr_id-31">Brazil</option>
+                              <option value="363" id="pn_cnr_id-32">British Indian Ocean Territory</option>
+                              <option value="430" id="pn_cnr_id-33">British Virgin Islands</option>
+                              <option value="302" id="pn_cnr_id-34">Brunei</option>
+                              <option value="369" id="pn_cnr_id-35">Bulgaria</option>
+                              <option value="246" id="pn_cnr_id-36">Burkina Faso</option>
+                              <option value="247" id="pn_cnr_id-37">Burundi</option>
+                              <option value="313" id="pn_cnr_id-38">Cambodia</option>
+                              <option value="260" id="pn_cnr_id-39">Cameroon</option>
+                              <option value="411" id="pn_cnr_id-40">Canada</option>
+                              <option value="259" id="pn_cnr_id-41">Cape Verde</option>
+                              <option value="465" id="pn_cnr_id-42">Caribbean Netherlands</option>
+                              <option value="439" id="pn_cnr_id-43">Cayman Islands</option>
+                              <option value="293" id="pn_cnr_id-44">Central African Republic</option>
+                              <option value="294" id="pn_cnr_id-45">Chad</option>
+                              <option value="458" id="pn_cnr_id-46">Chile</option>
+                              <option value="6" id="pn_cnr_id-47">China</option>
+                              <option value="326" id="pn_cnr_id-48">Christmas Island</option>
+                              <option value="359" id="pn_cnr_id-49">Cocos (Keeling) Islands</option>
+                              <option value="440" id="pn_cnr_id-50">Colombia</option>
+                              <option value="262" id="pn_cnr_id-51">Comoros</option>
+                              <option value="263" id="pn_cnr_id-52">Congo - Brazzaville</option>
+                              <option value="253" id="pn_cnr_id-53">Congo - Kinshasa</option>
+                              <option value="351" id="pn_cnr_id-54">Cook Islands</option>
+                              <option value="412" id="pn_cnr_id-55">Costa Rica</option>
+                              <option value="264" id="pn_cnr_id-56">Côte d’Ivoire</option>
+                              <option value="399" id="pn_cnr_id-57">Croatia</option>
+                              <option value="467" id="pn_cnr_id-58">Cuba</option>
+                              <option value="468" id="pn_cnr_id-59">Curaçao</option>
+                              <option value="10" id="pn_cnr_id-60">Cyprus</option>
+                              <option value="401" id="pn_cnr_id-61">Czech-Republic</option>
+                              <option value="377" id="pn_cnr_id-62">Denmark</option>
+                              <option value="254" id="pn_cnr_id-63">Djibouti</option>
+                              <option value="438" id="pn_cnr_id-64">Dominica</option>
+                              <option value="437" id="pn_cnr_id-65">Dominican Republic</option>
+                              <option value="459" id="pn_cnr_id-66">Ecuador</option>
+                              <option value="255" id="pn_cnr_id-67">Egypt</option>
+                              <option value="460" id="pn_cnr_id-68">El Salvador</option>
+                              <option value="295" id="pn_cnr_id-69">Equatorial Guinea</option>
+                              <option value="296" id="pn_cnr_id-70">Eritrea</option>
+                              <option value="406" id="pn_cnr_id-71">Estonia</option>
+                              <option value="297" id="pn_cnr_id-72">Ethiopia</option>
+                              <option value="456" id="pn_cnr_id-73">Falkland Islands</option>
+                              <option value="396" id="pn_cnr_id-74">Faroe Islands</option>
+                              <option value="339" id="pn_cnr_id-75">Fiji</option>
+                              <option value="397" id="pn_cnr_id-76">Finland</option>
+                              <option value="398" id="pn_cnr_id-77">France</option>
+                              <option value="457" id="pn_cnr_id-78">French Guiana</option>
+                              <option value="338" id="pn_cnr_id-79">French Polynesia</option>
+                              <option value="469" id="pn_cnr_id-80">French Southern Territories</option>
+                              <option value="248" id="pn_cnr_id-81">Gabon</option>
+                              <option value="249" id="pn_cnr_id-82">Gambia</option>
+                              <option value="418" id="pn_cnr_id-83">Georgia</option>
+                              <option value="13" id="pn_cnr_id-84">Germany</option>
+                              <option value="250" id="pn_cnr_id-85">Ghana</option>
+                              <option value="374" id="pn_cnr_id-86">Gibraltar</option>
+                              <option value="376" id="pn_cnr_id-87">Greece</option>
+                              <option value="410" id="pn_cnr_id-88">Greenland</option>
+                              <option value="436" id="pn_cnr_id-89">Grenada</option>
+                              <option value="435" id="pn_cnr_id-90">Guadeloupe</option>
+                              <option value="361" id="pn_cnr_id-91">Guam</option>
+                              <option value="408" id="pn_cnr_id-92">Guatemala</option>
+                              <option value="373" id="pn_cnr_id-93">Guernsey</option>
+                              <option value="252" id="pn_cnr_id-94">Guinea</option>
+                              <option value="251" id="pn_cnr_id-95">Guinea-Bissau</option>
+                              <option value="434" id="pn_cnr_id-96">Guyana</option>
+                              <option value="433" id="pn_cnr_id-97">Haiti</option>
+                              <option value="470" id="pn_cnr_id-98">Heard &amp; McDonald Islands</option>
+                              <option value="409" id="pn_cnr_id-99">Honduras</option>
+                              <option value="305" id="pn_cnr_id-100">Hong Kong SAR China</option>
+                              <option value="372" id="pn_cnr_id-101">Hungary</option>
+                              <option value="380" id="pn_cnr_id-102">Iceland</option>
+                              <option value="307" id="pn_cnr_id-103">India</option>
+                              <option value="308" id="pn_cnr_id-104">Indonesia</option>
+                              <option value="311" id="pn_cnr_id-105">Iran</option>
+                              <option value="310" id="pn_cnr_id-106">Iraq</option>
+                              <option value="379" id="pn_cnr_id-107">Ireland</option>
+                              <option value="388" id="pn_cnr_id-108">Isle of Man</option>
+                              <option value="306" id="pn_cnr_id-109">Israel</option>
+                              <option value="11" id="pn_cnr_id-110">Italy</option>
+                              <option value="461" id="pn_cnr_id-111">Jamaica</option>
+                              <option value="7" id="pn_cnr_id-112">Japan</option>
+                              <option value="378" id="pn_cnr_id-113">Jersey</option>
+                              <option value="309" id="pn_cnr_id-114">Jordan</option>
+                              <option value="15" id="pn_cnr_id-115">Kazakhstan</option>
+                              <option value="261" id="pn_cnr_id-116">Kenya</option>
+                              <option value="360" id="pn_cnr_id-117">Kiribati</option>
+                              <option value="315" id="pn_cnr_id-118">Kuwait</option>
+                              <option value="419" id="pn_cnr_id-119">Kyrgyzstan</option>
+                              <option value="316" id="pn_cnr_id-120">Laos</option>
+                              <option value="382" id="pn_cnr_id-121">Latvia</option>
+                              <option value="317" id="pn_cnr_id-122">Lebanon</option>
+                              <option value="265" id="pn_cnr_id-123">Lesotho</option>
+                              <option value="266" id="pn_cnr_id-124">Liberia</option>
+                              <option value="267" id="pn_cnr_id-125">Libya</option>
+                              <option value="384" id="pn_cnr_id-126">Liechtenstein</option>
+                              <option value="383" id="pn_cnr_id-127">Lithuania</option>
+                              <option value="385" id="pn_cnr_id-128">Luxembourg</option>
+                              <option value="318" id="pn_cnr_id-129">Macau SAR China</option>
+                              <option value="390" id="pn_cnr_id-130">Macedonia</option>
+                              <option value="270" id="pn_cnr_id-131">Madagascar</option>
+                              <option value="272" id="pn_cnr_id-132">Malawi</option>
+                              <option value="319" id="pn_cnr_id-133">Malaysia</option>
+                              <option value="320" id="pn_cnr_id-134">Maldives</option>
+                              <option value="273" id="pn_cnr_id-135">Mali</option>
+                              <option value="386" id="pn_cnr_id-136">Malta</option>
+                              <option value="357" id="pn_cnr_id-137">Marshall Islands</option>
+                              <option value="441" id="pn_cnr_id-138">Martinique</option>
+                              <option value="269" id="pn_cnr_id-139">Mauritania</option>
+                              <option value="268" id="pn_cnr_id-140">Mauritius</option>
+                              <option value="271" id="pn_cnr_id-141">Mayotte</option>
+                              <option value="463" id="pn_cnr_id-142">Mexico</option>
+                              <option value="356" id="pn_cnr_id-143">Micronesia</option>
+                              <option value="16" id="pn_cnr_id-144">Moldova</option>
+                              <option value="387" id="pn_cnr_id-145">Monaco</option>
+                              <option value="321" id="pn_cnr_id-146">Mongolia</option>
+                              <option value="400" id="pn_cnr_id-147">Montenegro</option>
+                              <option value="442" id="pn_cnr_id-148">Montserrat</option>
+                              <option value="274" id="pn_cnr_id-149">Morocco</option>
+                              <option value="275" id="pn_cnr_id-150">Mozambique</option>
+                              <option value="322" id="pn_cnr_id-151">Myanmar (Burma)</option>
+                              <option value="276" id="pn_cnr_id-152">Namibia</option>
+                              <option value="355" id="pn_cnr_id-153">Nauru</option>
+                              <option value="323" id="pn_cnr_id-154">Nepal</option>
+                              <option value="375" id="pn_cnr_id-155">Netherlands</option>
+                              <option value="352" id="pn_cnr_id-156">New Caledonia</option>
+                              <option value="353" id="pn_cnr_id-157">New Zealand</option>
+                              <option value="471" id="pn_cnr_id-158">Nicaragua</option>
+                              <option value="278" id="pn_cnr_id-159">Niger</option>
+                              <option value="277" id="pn_cnr_id-160">Nigeria</option>
+                              <option value="354" id="pn_cnr_id-161">Niue</option>
+                              <option value="350" id="pn_cnr_id-162">Norfolk Island</option>
+                              <option value="330" id="pn_cnr_id-163">North Korea</option>
+                              <option value="345" id="pn_cnr_id-164">Northern Mariana Islands</option>
+                              <option value="12" id="pn_cnr_id-165">Norway</option>
+                              <option value="325" id="pn_cnr_id-166">Oman</option>
+                              <option value="327" id="pn_cnr_id-167">Pakistan</option>
+                              <option value="349" id="pn_cnr_id-168">Palau</option>
+                              <option value="328" id="pn_cnr_id-169">Palestinian Territories</option>
+                              <option value="414" id="pn_cnr_id-170">Panama</option>
+                              <option value="348" id="pn_cnr_id-171">Papua New Guinea</option>
+                              <option value="446" id="pn_cnr_id-172">Paraguay</option>
+                              <option value="447" id="pn_cnr_id-173">Peru</option>
+                              <option value="336" id="pn_cnr_id-174">Philippines</option>
+                              <option value="347" id="pn_cnr_id-175">Pitcairn Islands</option>
+                              <option value="4" id="pn_cnr_id-176">Poland</option>
+                              <option value="389" id="pn_cnr_id-177">Portugal</option>
+                              <option value="448" id="pn_cnr_id-178">Puerto Rico</option>
+                              <option value="314" id="pn_cnr_id-179">Qatar</option>
+                              <option value="279" id="pn_cnr_id-180">Réunion</option>
+                              <option value="391" id="pn_cnr_id-181">Romania</option>
+                              <option value="1" id="pn_cnr_id-182">Russia</option>
+                              <option value="280" id="pn_cnr_id-183">Rwanda</option>
+                              <option value="346" id="pn_cnr_id-184">Samoa</option>
+                              <option value="392" id="pn_cnr_id-185">San Marino</option>
+                              <option value="281" id="pn_cnr_id-186">São Tomé &amp; Príncipe</option>
+                              <option value="329" id="pn_cnr_id-187">Saudi Arabia</option>
+                              <option value="285" id="pn_cnr_id-188">Senegal</option>
+                              <option value="393" id="pn_cnr_id-189">Serbia</option>
+                              <option value="284" id="pn_cnr_id-190">Seychelles</option>
+                              <option value="288" id="pn_cnr_id-191">Sierra Leone</option>
+                              <option value="331" id="pn_cnr_id-192">Singapore</option>
+                              <option value="472" id="pn_cnr_id-193">Sint Maarten</option>
+                              <option value="394" id="pn_cnr_id-194">Slovakia</option>
+                              <option value="395" id="pn_cnr_id-195">Slovenia</option>
+                              <option value="344" id="pn_cnr_id-196">Solomon Islands</option>
+                              <option value="286" id="pn_cnr_id-197">Somalia</option>
+                              <option value="298" id="pn_cnr_id-198">South Africa</option>
+                              <option value="473" id="pn_cnr_id-199">South Georgia &amp; South Sandwich Islands</option>
+                              <option value="474" id="pn_cnr_id-200">South Sudan</option>
+                              <option value="9" id="pn_cnr_id-201">South-Korea</option>
+                              <option value="18" id="pn_cnr_id-202">Spain</option>
+                              <option value="337" id="pn_cnr_id-203">Sri Lanka</option>
+                              <option value="449" id="pn_cnr_id-204">St. Barthélemy</option>
+                              <option value="283" id="pn_cnr_id-205">St. Helena</option>
+                              <option value="451" id="pn_cnr_id-206">St. Kitts &amp; Nevis</option>
+                              <option value="452" id="pn_cnr_id-207">St. Lucia</option>
+                              <option value="445" id="pn_cnr_id-208">St. Martin</option>
+                              <option value="415" id="pn_cnr_id-209">St. Pierre &amp; Miquelon</option>
+                              <option value="450" id="pn_cnr_id-210">St. Vincent &amp; Grenadines</option>
+                              <option value="287" id="pn_cnr_id-211">Sudan</option>
+                              <option value="453" id="pn_cnr_id-212">Suriname</option>
+                              <option value="404" id="pn_cnr_id-213">Svalbard &amp; Jan Mayen</option>
+                              <option value="282" id="pn_cnr_id-214">Swaziland</option>
+                              <option value="403" id="pn_cnr_id-215">Sweden</option>
+                              <option value="402" id="pn_cnr_id-216">Switzerland</option>
+                              <option value="332" id="pn_cnr_id-217">Syria</option>
+                              <option value="334" id="pn_cnr_id-218">Taiwan</option>
+                              <option value="420" id="pn_cnr_id-219">Tajikistan</option>
+                              <option value="289" id="pn_cnr_id-220">Tanzania</option>
+                              <option value="333" id="pn_cnr_id-221">Thailand</option>
+                              <option value="335" id="pn_cnr_id-222">Timor-Leste</option>
+                              <option value="290" id="pn_cnr_id-223">Togo</option>
+                              <option value="343" id="pn_cnr_id-224">Tokelau</option>
+                              <option value="342" id="pn_cnr_id-225">Tonga</option>
+                              <option value="454" id="pn_cnr_id-226">Trinidad &amp; Tobago</option>
+                              <option value="291" id="pn_cnr_id-227">Tunisia</option>
+                              <option value="5" id="pn_cnr_id-228">Turkey</option>
+                              <option value="8" id="pn_cnr_id-229">Turkmenistan</option>
+                              <option value="444" id="pn_cnr_id-230">Turks &amp; Caicos Islands</option>
+                              <option value="341" id="pn_cnr_id-231">Tuvalu</option>
+                              <option value="358" id="pn_cnr_id-232">U.S. Outlying Islands</option>
+                              <option value="432" id="pn_cnr_id-233">U.S. Virgin Islands</option>
+                              <option value="292" id="pn_cnr_id-234">Uganda</option>
+                              <option value="2" id="pn_cnr_id-235">Ukraine</option>
+                              <option value="324" id="pn_cnr_id-237">United Arab Emirates</option>
+                              <option value="3" id="pn_cnr_id-238">United States</option>
+                              <option value="19" id="pn_cnr_id-239">United-Kingdom</option>
+                              <option value="455" id="pn_cnr_id-240">Uruguay</option>
+                              <option value="421" id="pn_cnr_id-241">Uzbekistan</option>
+                              <option value="362" id="pn_cnr_id-242">Vanuatu</option>
+                              <option value="371" id="pn_cnr_id-243">Vatican City</option>
+                              <option value="431" id="pn_cnr_id-244">Venezuela</option>
+                              <option value="304" id="pn_cnr_id-245">Vietnam</option>
+                              <option value="340" id="pn_cnr_id-246">Wallis &amp; Futuna</option>
+                              <option value="257" id="pn_cnr_id-247">Western Sahara</option>
+                              <option value="312" id="pn_cnr_id-248">Yemen</option>
+                              <option value="256" id="pn_cnr_id-249">Zambia</option>
+                              <option value="258" id="pn_cnr_id-250">Zimbabwe</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label for="pn_paypal_email" class="required" aria-required="true">Payoneer Email:</label><br>
+                     <input name="paypalemail" class="field" id="pn_paypal_email" autocomplete="off" tabindex="5" value="" aria-required="true" type="text">
+                  </div>
+                   <div class="js_additional_fields show">
+                        <div class="form-group">
+                           <label for="confirm_pass" class="required" aria-required="true">Your password (Viral-Lift):</label><br>
+                           <input type="password" name="password" class="field js-add-site " id="confirm_pass" autocomplete="off" tabindex="5" value="" aria-required="true">
+                        </div>
+                        <div class="form-group">
+                           <button type="submit" class="btn btn-header">Save</button>
+                        </div>
+                     </div>
+               </form>
+               </div>
+               <div class="wire">
+                  not available
+               </div>
+               <!--<div class="block-wrapper">-->
+               <!--<div class="form-block block-profile">-->
+               <!--Referral link-->
+               <!--<div style="overflow: auto;">-->
+               <!--<div class="form-group col-md-4">-->
+               <!--<label for="camp-add-input-1">Your referral link :</label>-->
+               <!--<input type="text" class="form-control" id="camp-add-input-1" value="http://payclick.com/?referral=377307">-->
+               <!--</div>-->
+               <!--</div>-->
+               <!--</div>-->
+               <!--</div>-->
+            </div>
+         </div>
+      </div>
+      <div class="block-wrapper">
+         {{password}}
+         <div class="form-block block-profile">
+            Profile settings
+            <div style="overflow: auto;">
+               <form role="section" action="change_password" class="form settings-form" method="post" id="form-email-pass">
+                  {% csrf_token %}
+                  <div class="form-group col-md-4">
+                     <label for="camp-add-input-1">New password:</label>
+                     <input name="old_password" type="password" required class="form-control" id="camp-add-input-1">
+                  </div>
+                  <div class="form-group col-md-4">
+                     <label for="camp-add-input-1">Repeat the new password:</label>
+                     <input name="cpassword" type="password" required class="form-control" id="camp-add-input-1">
+                  </div>
+                  <div class="form-group col-md-4">
+                     <label for="camp-add-input-1">Current password:</label>
+                     <input name="password" type="password" required class="form-control" id="camp-add-input-1">
+                  </div>
+                  <button type="submit" class="btn btn-header">Save</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}

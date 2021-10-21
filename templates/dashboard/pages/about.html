@@ -1,0 +1,14 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block page_body %}
+{% load static %}
+<div class="content about">
+
+    {% for data in PageData %}
+    {% autoescape on %}{{data.description | safe}}{% endautoescape %}
+</div>
+
+
+{% endfor %}
+
+{% endblock %}

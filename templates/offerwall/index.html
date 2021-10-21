@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+
+    <title>{% block title %} {{ app_title }} {% endblock %}</title>
+
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/style.min.moretv.css"/>
+    <link rel="stylesheet" href="/static/css/offerwall/main.css"/>
+    <link rel="icon" href="/static/images/{{ app_name }}.png"/>
+    <link rel="icon" href="/static/images/{{ app_name }}-55x55.png" sizes="32x32"/>
+    <link rel="icon" href="/static/images/{{ app_name }}.png" sizes="192x192"/>
+    <link rel="apple-touch-icon-precomposed" href="/static/images/{{ app_name }}.png"/>
+    <meta name="msapplication-TileImage" content="/static/images/{{ app_name }}.png"/>
+
+    <link rel="stylesheet" href="/static/css/Semantic-UI-CSS-master/semantic.min.css">
+</head>
+<body style="height: 100%">
+
+<div class="container" style="padding: 20px">
+
+    <div class="heading">
+        <div class="ui top fixed menu">
+            <div class="item" style="display: flex">
+                <img src="/static/images/moretvtime-55x55.png">
+                <div style="margin-left: 20px">OfferWall</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-body" style="padding-top: 60px">
+
+            {% for article in articles %}
+
+                    <div class="ui divided items">
+                        <div class="item">
+                            <div class="image">
+                                <img src="/article_images/{{ article.thumbnail }}">
+                            </div>
+                            <div class="content">
+                                <a class="header">{{ article.title }}</a>
+                                <div class="meta">
+                                    <span class="cinema">{{ article.article_text|safe|truncatechars:200 }}</span>
+                                </div>
+                                <div class="ui fluid input">
+                                    <input type="text" value="{{ article.ref_link }}{{ ref }}"/>
+                                </div>
+                                <div class="extra">
+                                    <div class="ref-link ui label" data-link="{{ article.ref_link }}{{ ref }}">
+                                        Copy To Clipboard
+                                    </div>
+
+                                    <div class="share-buttons">
+
+                                        <!-- Facebook -->
+                                        <a href="http://www.facebook.com/sharer.php?u={{ article.ref_link|urlencode }}{{ ref }}" target="_blank">
+                                            <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                                        </a>
+
+                                        <!-- Google+ -->
+                                        <a href="https://plus.google.com/share?url={{ article.ref_link|urlencode }}{{ ref }}" target="_blank">
+                                            <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+                                        </a>
+
+                                        <!-- LinkedIn -->
+                                        <a href="http://www.ref_linkedin.com/shareArticle?mini=true&amp;url={{ article.ref_link|urlencode }}{{ ref|urlencode }}" target="_blank">
+                                            <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
+                                        </a>
+
+                                        <!-- Reddit -->
+                                        <a href="http://reddit.com/submit?url={{ article.ref_link|urlencode }}{{ ref|urlencode }}" target="_blank">
+                                            <img src="https://simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" />
+                                        </a>
+
+                                        <!-- Tumblr-->
+                                        <a href="http://www.tumblr.com/share/link?url={{ article.ref_link|urlencode }}{{ ref|urlencode }}&amp;title=Moretvtime" target="_blank">
+                                            <img src="https://simplesharebuttons.com/images/somacro/tumblr.png" alt="Tumblr" />
+                                        </a>
+
+                                        <!-- Twitter -->
+                                        <a href="https://twitter.com/share?url={{ article.ref_link|urlencode }}{{ ref|urlencode }}&amp;text=MoreTVTime&amp;hashtags=moretvtime" target="_blank">
+                                            <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                                        </a>
+
+                                        <!-- VK -->
+                                        <a href="http://vkontakte.ru/share.php?url={{ article.ref_link|urlencode }}{{ ref|urlencode }}" target="_blank">
+                                            <img src="https://simplesharebuttons.com/images/somacro/vk.png" alt="VK" />
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            {% endfor %}
+
+    </div>
+
+</div>
+
+{% csrf_token %}
+
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/Chart.min.js"></script>
+<script src="/static/js/Semantic-UI-CSS-master/semantic.min.js"></script>
+<script src="/static/js/utils.js"></script>
+<script src="/static/js/offerwall.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header">
+   <h1>
+      New message
+   </h1>
+</section>
+<section class="content">
+   <div class="col-md-12">
+      <div class="block-wrapper">
+         <div class="form-block block-vidjet">
+            <form class="form ticket-from" method="post"  id="ticket-form" >
+               {% csrf_token %}
+               <div>
+                  <div class="form-group col-md-5">
+                     <label for="camp-add-input-1">Priority:</label>
+                     <div id="camp-add-input-1-styler" class="jq-selectbox jqselect" style="position: relative; z-index: 99;">
+                        <div id="camp-add-input-1-styler" class="jq-selectbox jqselect dropdown opened" style="position: relative; z-index: 100;">
+                           <select name="priority_id" class="form-control" id="camp-add-input-1">
+                              <option value="Normal" selected="selected">Normal</option>
+                              <option value="High">High</option>
+                              <option value="Urgent">Urgent</option>
+                              <option value="Immediate">Immediate</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group col-md-7">
+                     <label for="subject">Subject:</label>
+                     <input type="text" class="form-control" id="subject" name="subject" required/>
+                  </div>
+                  <div class="form-group col-md-12">
+                     <label for="camp-add-input-3">Message:</label>
+                     <textarea class="form-control" rows="6" name="text"  required id="camp-add-input-3"></textarea>
+                  </div>
+               </div>
+               <button type="submit" class="btn btn-header">Send</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}

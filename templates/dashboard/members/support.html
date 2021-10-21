@@ -1,0 +1,72 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header">
+   <h1>
+      My sites
+   </h1>
+</section>
+<section class="content">
+   <div class="block-wrapper">
+      <div class="block-wrapper-left">
+         <div class="btn-group">
+            <button type="button" onclick="window.location='contactmanager'"
+               class="btn btn-dark">Contact manager
+            </button>
+         </div>
+      </div>
+   </div>
+   <div class="table-wrapper table-default">
+      <div class="table-responsive">
+         <script language="javascript">
+            var eve  = 'ticket';
+            var type = '&type=';
+
+
+
+
+             function Location (Url)
+              {
+               if (confirm("Remove selected elements?"))
+                {
+                 parent.location=Url;
+                }
+               else { return false; }
+              }
+
+         </script>
+         <form action="/members/?event=ticket&amp;action=index" method="post" id="settings" style="display: none;">
+            <table class="brd" style="width:100%">
+            </table>
+         </form>
+         <table class="table table-striped" id="BrowseTable">
+            <thead>
+               <tr>
+                  <th>ID<i class="icon info-icon" data-ot="Ticket unique identifier"></i></th>
+                  <th>Date<i class="icon info-icon" data-ot="Ticket creation date"></i></th>
+                  <th>Status<i class="icon info-icon" data-ot="Ticket creation date"></i></th>
+                  <th>Subject<i class="icon info-icon" data-ot="Ticket Subject"></i></th>
+               </tr>
+            </thead>
+            <tbody>
+               {% for data in SupportView%}
+               <tr id="tr_108428" class="">
+                  <td class="" style="text-align: left;">
+                     #{{data.id}}
+                  </td>
+                  <td class="" style="text-align: left;">
+                     {{data.created}}
+                  </td>
+                  <td class="" style="text-align: left;">
+                     {{data.status}}
+                  </td>
+                  <td class="" style="text-align: left;">
+                     <a href="message/{{data.id}}">{{data.subject}}</a>
+                  </td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      </div>
+   </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'moretvtime/layout.html' %}
+
+{% load static %}
+
+
+{% block page_body %}
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+    </style>
+
+    <div id="captcha">
+
+        <form method="post" href="/{{ article_url }}">
+
+            <div>Please solve Math Captcha to continue</div>
+
+            <div>
+                <img src="data:image/png;base64, {{ captcha_image }}"/>
+                <div>=</div>
+                <input name="solution" class="solution" type="text" value=""/>
+            </div>
+            {% if captcha_wrong %}
+                <div class="captcha-wrong">Wrong captcha!</div>
+            {% endif %}
+            <input name="uuid" type="hidden" value="{{ captcha_uuid }}"/>
+            <input type="submit" value="Submit" class="button is-danger"/>
+            {% csrf_token %}
+        </form>
+
+    </div>
+
+{% endblock %}

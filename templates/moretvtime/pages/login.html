@@ -1,0 +1,31 @@
+{% extends 'moretvtime/layout.html' %}
+{% load static %}
+
+{% block afterbody %}
+
+{% endblock %}
+
+{% block page_body %}
+        <section class="herois-fullheight mtt-login-form">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <div class="column is-4 is-offset-4">
+                        <h3 class="title has-text-grey">Login</h3>
+                        <div class="box">
+                            <form method="post" action="/login">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input is-large {% if error %} is-danger {% endif %}" name="login" type="text" placeholder="Your unique login" autofocus="">
+                                    </div>
+                                    <p class="help is-danger">{{ error }}</p>
+                                </div>
+
+                                <input class="button is-block is-info is-large is-fullwidth" type="submit" value="Login">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

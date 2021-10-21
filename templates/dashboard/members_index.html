@@ -1,0 +1,111 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header">
+    <h1>
+        Dashboard
+    </h1>
+</section>
+<section class="content dashboard">
+    <div class="dashboard-title">Current month revenue: <span>{{revenu_total_t.totalmoney}} USD</span></div>
+    <div class="block-wrapper">
+        <div id="line-chart" style="height: 300px; padding: 0px; position: relative;">
+            <canvas class="flot-base" width="979" height="300"
+                    style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 979px; height: 300px;"></canvas>
+            <div class="flot-text"
+                 style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);">
+                <div class="flot-x-axis flot-x1-axis xAxis x1Axis"
+                     style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 31px; text-align: center;">01.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 108px; text-align: center;">02.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 184px; text-align: center;">03.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 261px; text-align: center;">04.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 337px; text-align: center;">05.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 414px; text-align: center;">06.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 490px; text-align: center;">07.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 567px; text-align: center;">08.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 643px; text-align: center;">09.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 720px; text-align: center;">10.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 796px; text-align: center;">11.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 873px; text-align: center;">12.18
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; max-width: 75px; top: 273px; left: 949px; text-align: center;">01.19
+                    </div>
+                </div>
+                <div class="flot-y-axis flot-y1-axis yAxis y1Axis"
+                     style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; top: 250px; left: 11px; text-align: right;">-1.0
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; top: 189px; left: 11px; text-align: right;">-0.5
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; top: 127px; left: 15px; text-align: right;">0.0
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; top: 66px; left: 15px; text-align: right;">0.5
+                    </div>
+                    <div class="flot-tick-label tickLabel"
+                         style="position: absolute; top: 4px; left: 15px; text-align: right;">1.0
+                    </div>
+                </div>
+            </div>
+            <canvas class="flot-overlay" width="979" height="300"
+                    style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 979px; height: 300px;"></canvas>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="block-wrapper dashboard-block">
+            <div class="dashboard-stat-header">Today revenue</div>
+            <div class="dashboard-dynamic-good">{{r_today}} USD</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="block-wrapper dashboard-block">
+            <div class="dashboard-stat-header">Yesterday revenue</div>
+            <div class="dashboard-dynamic-poor">{{r_yesterday}} USD</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="block-wrapper dashboard-block">
+            <div class="dashboard-stat-header">Today impressions</div>
+            <div class="dashboard-dynamic-good">
+               {{today}}
+
+                </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="block-wrapper dashboard-block">
+            <div class="dashboard-stat-header">Yesterday impressions</div>
+            <div class="dashboard-dynamic-good">
+            {{yesterday}}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

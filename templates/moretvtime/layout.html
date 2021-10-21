@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    {% load moretvtime_filters %}
+    <title>{% block title %} {{ app_title }} {% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css?{% cache_bust %}"/>
+    <link rel="stylesheet" href="/static/css/style.min.moretv.css?{% cache_bust %}"/>
+    <link rel="icon" href="/static/images/{{ app_name }}.png"/>
+    <link rel="icon" href="/static/images/{{ app_name }}-55x55.png" sizes="32x32"/>
+    <link rel="icon" href="/static/images/{{ app_name }}.png" sizes="192x192"/>
+    <link rel="apple-touch-icon-precomposed" href="/static/images/{{ app_name }}.png"/>
+    <meta name="msapplication-TileImage" content="/static/images/{{ app_name }}.png"/>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/static/css/bulma.min.css?{% cache_bust %}"/>
+
+    <link rel="stylesheet" href="/static/css/video-js.min.css?{% cache_bust %}">
+    <link rel="stylesheet" href="/static/css/videojs.ads.css?{% cache_bust %}"/>
+    <link rel="stylesheet" href="/static/css/videojs.ima.css?{% cache_bust %}"/>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+
+    <!-- advertisers -->
+    <script async src="https://cdn.stat-rock.com/player/monetizeexperts.js"></script>
+
+    {% block ads-in-head %}{% endblock %}
+
+
+    {% include 'ads/google-analytics.html' %}
+
+    {# Onesignal #}
+    <link rel="manifest" href="/manifest.json"/>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                {% if show_banners %}
+                    appId: "9ebdc8c4-a7c2-44fe-add6-ef0bb3e98d90",
+                {% else %}
+                    appId: "6b99f586-05ec-4bfa-af48-856d3dedae8a",
+                {% endif %}
+            });
+        });
+    </script>
+    {# Onesignal #}
+
+</head>
+
+<body oncontextmenu="return false"
+      class="home blog wp-custom-logo
+        {% if show_banners %}
+            mtt-high-body
+        {% endif %}
+        {% block body_class %}
+            post-template-default single single-post postid-97 single-format-standard wp-custom-logo
+        {% endblock %}">
+
+{% include 'ads/afterbody.html' %}
+
+{% block afterbody %}{% endblock %}
+
+{% include 'moretvtime/common/header.html' %}
+
+{% block page_body %}{% endblock %}
+
+{% block before-footer %}{% endblock %}
+
+{% if is_mobile %}
+    <div id="is_mobile"></div>
+{% endif %}
+
+{% include 'moretvtime/common/footer.html' %}
+{% include 'ads/popup/antiadblock.html' %}
+{% include 'ads/popup/interstitial.html' %}
+{% include 'ads/popup/success.html' %}
+{% include 'ads/popup/vpn.html' %}
+
+{# swagbucks #}
+{% if provider == 'swagbucks' %}
+    <script src="https://js.entertainow.com/js/5wHouIUdFaG4FOf"></script>
+{% endif %}
+{# swagbucks #}
+
+<script type="application/javascript" src="/static/js/jquery.min.js?{% cache_bust %}"></script>
+<script type="application/javascript" src="/static/js/jquery-ui.min.js?{% cache_bust %}"></script>
+<script type="application/javascript" src="/static/js/common.js?{% cache_bust %}"></script>
+<script src="/static/js/nav.js?{% cache_bust %}"></script>
+<script type="application/javascript" src="/static/js/myservice.js?{% cache_bust %}"></script>
+<script src="//imasdk.googleapis.com/js/sdkloader/ima3.js?{% cache_bust %}"></script>
+<script src="/static/js/video.min.js?{% cache_bust %}"></script>
+<script src="/static/js/videojs.ads.min.js?{% cache_bust %}"></script>
+<script src="/static/js/videojs.ima.js?{% cache_bust %}"></script>
+<script src="/static/js/ads-video.js?{% cache_bust %}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+{% include 'moretvtime/common/addcookie.html' %}
+{% block afterbody-end %}{% endblock %}
+{% csrf_token %}
+</body>
+</html>

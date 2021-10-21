@@ -1,0 +1,59 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header">
+   <h1>
+      Widgets Site moretvtime.com
+   </h1>
+</section>
+<section class="content">
+   <div class="block-wrapper">
+      <div class="block-wrapper-left">
+         <div class="btn-group">
+            <button type="button"
+               onclick="window.location='/addwidget/{{WidgetID}}/wid'"
+               class="btn btn-dark">Add a widget
+            </button>
+         </div>
+         <!--div class="btn-group">
+            <button type="button" class="btn btn-dark js_get_aab_code">Install AntiAdblock</button>
+            </div-->
+      </div>
+   </div>
+   <div class="table-wrapper table-default">
+      <div class="table-responsive">
+         <table class="table table-striped">
+            <tbody>
+               <tr>
+                  <td>Widget ID</td>
+                  <td>Name</td>
+                  <td>Actions</td>
+               </tr>
+               {% for data in WidgetData%}
+               <tr>
+                  <td>{{data.wid}}</td>
+                  <td>{{data.name}}</a>
+                  </td>
+                  <td>
+                     <button type="button"
+                        onclick="window.location = '/editwidget/{{data.site_id}}/{{data.wid}}'"
+                        title="Edit the advertising widget" class="btn btn-header btn-actions"><i
+                        class="fa fa-cog"></i></button>
+                     <form action="/remove_widget_items" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="item_id" value="{{data.id}}" />
+                        <input type="hidden" name="wid_id" value="{{WidgetID}}" />
+                        <button type="submit" class="btn delete-btn btn-dark btn-actions"
+                           data-name="{{data.name | safe}}" title="Remove the site"
+                           data-ot="Remove the site">
+                        <i class="fa fa-times-circle"></i>
+                        </button>
+                     </form>
+                  </td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      </div>
+   </div>
+</section>
+{% endblock %}

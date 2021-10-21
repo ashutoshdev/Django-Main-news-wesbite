@@ -1,0 +1,196 @@
+{% extends 'moretvtime/layout.html' %}
+
+{% block additionalstatic %}{% endblock %}
+
+{% block afterbody %}
+    {% if show_banners %}
+        {% include 'ads/progressbar_header.html' %}
+        <style>
+            #header {
+                top: 52px
+            }
+            body {
+                margin-top: 72px;
+            }
+        </style>
+    {% endif %}
+{% endblock %}
+
+{% block page_body %}
+    <main id="main" role="main" class="category">
+        <div id="category-content" class="music-section">
+            <div class="banner music">
+                <div class="holder">
+
+{#                    <div class="title-bar">#}
+{#                        <h1 class="heading">{{ category }}</h1>#}
+{#                    </div>#}
+                </div>
+            </div>
+
+            <div class="holder">
+                <div id="article-container" class="article-holder">
+
+                    {% include 'ads/index/ads-index-top.html' %}
+
+                    <article class="article-blocka" style="">
+
+                        <div class="image-holder">
+                            <div class="mtt-tag">
+                                <div class="mtt-tag-logo">
+                                    <img src="/static/images//moretvtime_tag.png" alt="Moretvtime" class="img">
+                                </div>
+                                <div id="title_tag">
+                                    <a href="/{{ first_article.category_id }}/{{ first_article.category.url }}/{{ first_article.url }}">
+                                        {{ first_article.title }}
+                                    </a>
+                                </div>
+                                <a href="/{{ first_article.category_id }}/{{ first_article.category.url }}/{{ first_article.url }}">
+                                    <div class="" id="btnrm">VIEW STORY</div>
+                                </a>
+                            </div>
+                            <a href="/{{ first_article.category_id }}/{{ first_article.category.url }}/{{ first_article.url }}">
+                                <img src="/article_images/{{ first_article.thumbnail }}" alt="" width="100%">
+                            </a>
+                        </div>
+
+                        {% if country == "US" and not is_mobile %}
+
+                            <style>
+                                .article-holder .article-blocka {
+                                    float: left;
+                                }
+                            </style>
+
+                            <br/>
+
+                            {# small LockerDome #}
+                            <div>
+                                <div id="ld-6875-6814"></div> <script>(function(w,d,s,i){w.ldAdInit=w.ldAdInit||[];w.ldAdInit.push({slot:11339312944068710,size:[0, 0],id:"ld-6875-6814"});if(!d.getElementById(i)){var j=d.createElement(s),p=d.getElementsByTagName(s)[0];j.async=true;j.src="//cdn2.lockerdomecdn.com/_js/ajs.js";j.id=i;p.parentNode.insertBefore(j,p);}})(window,document,"script","ld-ajs");</script>
+                            </div>
+                            {# small LockerDome #}
+
+                            <br/>
+
+                            {# big LockerDome #}
+                            <div>
+                                <div id="ld-4258-3378"></div><script>(function(w,d,s,i){w.ldAdInit=w.ldAdInit||[];w.ldAdInit.push({slot:11339311568336998,size:[0, 0],id:"ld-4258-3378"});if(!d.getElementById(i)){var j=d.createElement(s),p=d.getElementsByTagName(s)[0];j.async=true;j.src="//cdn2.lockerdomecdn.com/_js/ajs.js";j.id=i;p.parentNode.insertBefore(j,p);}})(window,document,"script","ld-ajs");</script>
+                            </div>
+                            {# big LockerDome #}
+
+                        {% endif %}
+
+                    </article>
+
+                    {% for data in aData %}
+
+                        {% if is_mobile %}
+
+                            {% if forloop.counter == 3 %}
+
+                                {#  DFP Mobile 300x250 #}
+                                <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+                                    googletag.pubads().definePassback('/21771002246/Velis300x250', [300, 250]).display();
+                                </script>
+                                {#  DFP  #}
+
+                            {% elif forloop.counter == 6 %}
+
+                                {# DFP Mobile 300x250 #}
+                                <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+                                    googletag.pubads().definePassback('/21771002246/mobile-480x320-a1', [300, 250]).display();
+                                </script>
+                                {# DFP #}
+
+                            {% endif %}
+
+                        {% endif %}
+
+                        <article class="article-blockb">
+                            <div class="image-holder ">
+                                <a href="/{{ data.category_id }}/{{ data.category.url }}/{{ data.url }}">
+                                    <img src="/article_images/{{ data.thumbnail }}" alt="" width="426">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <h3>
+                                    <a href="/{{ data.category_id }}/{{ data.category.url }}/{{ data.url }}">
+                                        {{ data.title }}</a>
+                                </h3>
+                            </div>
+                        </article>
+                    {% endfor %}
+
+                {% if not is_mobile %}
+                    {% include 'ads/index/ads-index-bottom.html' %}
+                {% endif %}
+
+                </div>
+
+                {% if not is_mobile %}
+                    {% include 'ads/ads-homepage-right.html' %}
+                {% endif %}
+
+                <!--   <div class="text-wrap loading-more-category">
+                    <a id="loading-more" href="https://www.moretvtime.com/category/Trending/#" class="view-all">LOADING...</a>
+                 </div>-->
+            </div>
+        </div>
+    </main>
+
+    {# onesignal #}
+    <div class='onesignal-customlink-container'></div>
+    {# onesignal #}
+
+
+
+{% endblock %}
+
+{% block afterbody-end %}
+    {% if provider == 'swagbucks' %}
+        <script >
+            document.querySelectorAll('.article-blockb').forEach(e => {
+                e.addEventListener('click', (a) => {
+                    window.ncrvFireEvent && window.ncrvFireEvent();
+                })
+            });
+            document.querySelectorAll('.article-blocka').forEach(e => {
+                e.addEventListener('click', (a) => {
+                    window.ncrvFireEvent && window.ncrvFireEvent();
+                })
+            })
+        </script>
+    {% endif %}
+
+    <!--{#  Imonomy  #}-->
+        <!--<script>-->
+            <!--window.sticky_product_home_page = true;-->
+            <!--if (typeof imonomy != 'undefined') {-->
+                <!--imonomy.settings.manipulate_settings();-->
+            <!--}-->
+            <!--else {-->
+                <!--var url = '//tag.imonomy.com/script/14567716684/preload.js';-->
+                <!--var script = document.createElement('script');-->
+                <!--script.setAttribute('type', 'text/javascript');-->
+                <!--script.setAttribute('src', url);-->
+                <!--if (window.self !== window.top){-->
+                    <!--window.top.document.body.appendChild(script);-->
+                <!--} else{-->
+                    <!--document.body.appendChild(script);-->
+                <!--}-->
+            <!--}-->
+        <!--</script>-->
+    <!--{#  Imonomy  #}-->
+
+    <!--{#  Adpone Video  #}-->
+    <!--{#        <script async type="application/javascript" src="https://static.sunmedia.tv/integrations/30e40aac-1447-4c2e-9305-1e4e7b857067/30e40aac-1447-4c2e-9305-1e4e7b857067.js"></script>#}-->
+    <!--{#  Adpone Video  #}-->
+
+    {#  connectedinteractive  #}
+        <script>
+            !function(_window,_document,_type,_url,n,t,s){if(_window.ConnectTracker)return;n=_window.ConnectTracker=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!_window._ConnectTracker)_window._ConnectTracker=n;n.push=n;n.loaded=!0;n.version='1.0';n.queue=[];t=_document.createElement(_type);t.async=!0;t.src=_url;s=_document.getElementsByTagName(_type)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','//d3htn85c6cao65.cloudfront.net/libraries/connect-sdk/connect_tracker_v102.js');
+            ConnectTracker('init', 'c003ef709afa9218e446de21c24bb98a');
+        </script>
+    {#  connectedinteractive  #}
+
+{% endblock %}

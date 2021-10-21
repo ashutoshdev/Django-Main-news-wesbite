@@ -1,0 +1,1 @@
+importScripts('https://richpartners.co/service-worker.js');

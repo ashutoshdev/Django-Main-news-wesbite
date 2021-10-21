@@ -1,0 +1,15 @@
+<div id="progressbar">
+
+    {% if daily_limit %}
+        <div id="progressbar-counter">You have reached the daily {% if views_limit %}{{ views_limit }}{% else %}150{% endif %} game limit. In 24 hours you can continue.</div>
+    {% else %}
+
+        <div id="progressbar-text" class="blinking-text">
+            Click on video in bottom-right after it loads to start earning
+        </div>
+
+        <div id="progressbar-value"></div>
+
+    {% endif  %}
+
+</div>

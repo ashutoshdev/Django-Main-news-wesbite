@@ -1,0 +1,35 @@
+{% extends 'dashboard/layout2.html' %}
+{% block page_body %}
+{% load static %}
+
+  <div class="form-wrapper">
+    <a href="/dashboard" class="logo large">hyper</a>
+
+        <div>{{error}}</div>
+
+    <form accept-charset="UTF-8"  class="form" id="login-form" method="post">
+     {% csrf_token %}
+      <div class="fields">
+        <div class="field">
+          <input id="user_email" name="email" placeholder="Email" type="email" value="" required/>
+        </div>
+        <div class="field">
+          <input id="user_password" name="password" placeholder="Password" type="password" required/>
+        </div>
+        <div class="error"></div>
+        <div class="notice"></div>
+      </div>
+
+      <p class="comment"></p>
+
+      <input class="button blue" data-disable-with="Login" name="submit" type="submit" value="Login">
+</form>
+  <p class="text">
+                        <a href="forgotpassword">Forgot password?</a>
+                    </p>
+  </div>
+
+  <div class="login-link">Don't have an account? Register as <a href="sign_up">Sign Up</a></div>
+
+
+{% endblock %}

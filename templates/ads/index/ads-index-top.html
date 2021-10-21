@@ -1,0 +1,23 @@
+
+<div class="ads-index-top" style="width:100%; margin: 10px  auto 20px; text-align: center;">
+
+    {% if is_mobile %}
+
+        {# DFP Mobile 300x250 #}
+        <!-- /21671350435/300x250-moretvtime.com -->
+        <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+            googletag.pubads().definePassback('/21771002246/desktop-300x250', [300, 250]).display();
+        </script>
+        {# DFP Mobile 300x250 #}
+
+    {% else %}
+
+        {# DFP #}
+        <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+            googletag.pubads().definePassback('/21771002246/desktop-interstitial-970x250', [970, 250]).display();
+        </script>
+        {# DFP #}
+
+    {% endif %}
+
+</div>

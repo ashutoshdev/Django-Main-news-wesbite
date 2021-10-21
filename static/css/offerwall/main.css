@@ -1,0 +1,9 @@
+.extra {
+    display: flex !important;
+}
+.share-buttons a img {
+    width: 24px;
+}
+.ref-link {
+    cursor: pointer;
+}

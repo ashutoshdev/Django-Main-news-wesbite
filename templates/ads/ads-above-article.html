@@ -1,0 +1,28 @@
+
+{% if not show_banners %}
+
+    <div class="mtt-adunit">
+        {% if is_mobile %}
+
+            {#  DFP Mobile - 320x250-a1  #}
+            <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+                googletag.pubads().definePassback('/21771002246/mobile-320x250-a1', [300, 250]).display();
+            </script>
+
+        {% else %}
+            {#  DFP - 970x250-a1  #}
+            <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+                googletag.pubads().definePassback('/21771002246/desktop-970x250-a1', [970, 250]).display();
+            </script>
+        {% endif %}
+    </div>
+
+
+{% endif %}
+
+
+{% if show_popunder and popunder %}
+    {#  POPUNDER  #}
+    {% include 'ads/popunder/init.html' %}
+    {#  POPUNDER  #}
+{% endif %}

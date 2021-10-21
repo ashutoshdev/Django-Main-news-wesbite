@@ -1,0 +1,120 @@
+<input type="hidden" id="provider_name" value="{{provider_name}}={{provider_value}}"/>
+{% if show_banners %}
+<div class="container">
+    <div class="main">
+        <!--b class='seconddata'></b-->
+        <div id="dialog" title="Earn <b class='damtpop'></b> Satoshis Every Minute!">
+            <div class="dp"><b>How it works:</b> Click on a thumbnail from the home page.
+                Watch out for the red text at the top of the page which will tell you what to do.
+                After 1 minute you will be instantly paid! You can do this 50 times a day without waiting.
+            </div>
+            <div class="dp" id="error" style="color: red; display: none"></div>
+            <input id="name" name="name" type="text" placeholder="Enter your bitcoin address (FaucetHub)">
+
+            <div class="dp">Rewards are sent on <a href="https://faucethub.io/balance" style="color: red"
+                                                   target="_blank">FaucetHub.io.</a> Account registration required!
+            </div>
+            <div id="submit" onclick="chkaddress()">CLAIM <b class='damtpop'></b> SATOSHIS NOW!</div>
+        </div>
+        <!--b class='seconddata'></b-->
+        <div id="crypto_dialog"
+             title="Earn <b class='cdamtpop'></b> Satoshis Every Minute!">
+            <div class="dp"><b>How it works:</b> Click on a thumbnail from the home page.
+                Watch out for the red text at the top of the page which will tell you what to do.
+                After 1 minute you will be instantly paid! You can do this 50 times a day without waiting.
+
+            </div>
+            <div class="dp" id="c_error" style="color: red; display: none"></div>
+            <input id="Cryptochkaddress" name="Cryptochkaddress" type="text"
+                   placeholder="Enter your bitcoin address (FaucetHub)">
+
+            <div class="dp">Rewards are sent on <a href="https://faucethub.io/balance" style="color: red"
+                                                   target="_blank">FaucetHub.io.</a> Account registration required!
+            </div>
+
+            <div id="submit" onclick="Cryptochkaddress()">CLAIM <b class='cdamtpop'></b> SATOSHIS NOW!</div>
+        </div>
+
+
+    </div>
+
+    <div id="help_dialog" title="HELP">
+        <img src="/static/images/image.png" alt="Moretvtime">
+    </div>
+</div>
+
+<div class="modal" id="dialog_alert" style="background-color: transparent!important;">
+    <div class="modal-content box-deep-shadow box-border-grey">
+        <header class="modal-card-head">
+            <p class="modal-card-title"></p>
+            <button aria-label="close" class="delete"></button>
+        </header>
+        <div class="modal-card-body">
+            <article class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                        <img alt="Image" src="/static/images/success.png">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <p style="font-size: 24px;">
+                            Congrats! You just earned <b class='amtpop'></b> satoshis.
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <button aria-label="close" class="modal-close is-large"></button>
+</div>
+
+<div class="modal" id="crypto_alert" style="background-color: transparent!important;">
+    <div class="modal-content box-deep-shadow box-border-grey">
+        <header class="modal-card-head">
+            <p class="modal-card-title"></p>
+            <button aria-label="close" class="delete"></button>
+        </header>
+        <div class="modal-card-body">
+            <article class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                        <img alt="Image" src="/static/images/success.png">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                        <div class="dp" style="color: red">
+                            By registering on <a href="https://minglecash.com/" target="_blank" style="color: blue">Mingle
+                            Cash</a> (owner of MoreTvTime.com) you will earn 20 Satoshis per minute and benefit from a
+                            10-level referral system at 5% per level.
+                        </div>
+                        <div class="rof"><a href="https://minglecash.com/" target="_blank" style="color: blue">REGISTER
+                            FOR FREE</a></div>
+                        <div class="dp">
+                            <a href="/" style="color: #B7B7B7">
+                                No thanks. Let me just continue earning only <b class='camtpop'></b> Satoshis with
+                                MoreTvTime.com
+                            </a>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <button aria-label="close" class="modal-close is-large"></button>
+</div>
+
+
+<style>
+    .ui-dialog-title{
+        float: none !important;
+        display: block;
+        text-align: center;
+    }
+
+
+</style>
+{% endif %}

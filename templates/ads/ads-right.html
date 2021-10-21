@@ -1,0 +1,99 @@
+<div class="sidebar-banner sidebar-banner-300x600" style="position: absolute; display: block; top: 219px;">
+    <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+        googletag.pubads().definePassback('/21771002246/desktop-300x600-a1', [300, 600]).display();
+
+    </script>
+</div>
+
+<div class="sidebar-banner sidebar-banner-300x600" style="position: absolute;display: block;top: 1778px;">
+    <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+        googletag.pubads().definePassback('/21771002246/desktop-article-300x600-a2', [300, 600]).display();
+
+    </script>
+</div>
+
+
+{% if show_banners %}
+    {% if is_test_page2 %}
+
+        <div>test2 {{ is_test_page2 }}</div>
+
+    {% else %}
+        <div class="sidebar-banner sidebar-banner-300x600" style="position: absolute; display: block; top: 2444px;">
+            <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+                googletag.pubads().definePassback('/21771002246/desktop-article-300x600-a3', [300, 600]).display();
+
+            </script>
+        </div>
+
+        <div class="sidebar-banner sidebar-banner-300x600" style="position: absolute; display: block; top: 3391px;">
+            <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+                googletag.pubads().definePassback('/21771002246/desktop-article-300x600-a4', [300, 600]).display();
+
+            </script>
+        </div>
+
+    {% endif %}
+{% endif %}
+
+<script type="application/javascript">
+
+    const BANNER_HEIGHT = 600;
+
+    const getOffset = (el) => {
+        var _x = 0;
+        var _y = 0;
+        while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+            _x += el.offsetLeft - el.scrollLeft;
+            _y += el.offsetTop - el.scrollTop;
+            el = el.offsetParent;
+        }
+        return {top: _y, left: _x, bottom: _y + BANNER_HEIGHT};
+    };
+
+    let lastPosition = 0;
+    document.alignBanners = () => {
+
+        let sideBanners = Array.from(document.querySelectorAll('.sidebar-banner'));
+        let mainBanners = Array.from(document.querySelectorAll('.mtt-adunit'));
+
+        sideBanners.forEach((sideBanner, index) => {
+            let mainBanner = mainBanners[index];
+            let mainBannerPosition = getOffset(mainBanner);
+            let mainBannerTop = mainBannerPosition.top;
+            let mainBannerBot = mainBannerPosition.bottom;
+
+            if (mainBannerTop) {
+                if (lastPosition > mainBannerTop) {
+                    console.log('[POSITION] OVER', lastPosition, mainBannerTop);
+                    mainBannerTop = lastPosition + (lastPosition - mainBannerTop) + 40;
+                    mainBannerBot = mainBannerTop + BANNER_HEIGHT + 40;
+
+                    console.log('[POSITION] NEW Position', mainBannerTop, mainBannerBot);
+                }
+
+                console.log(`[POSITION] show mainBannerTop ${mainBannerTop} lastPosition ${lastPosition}`, mainBannerPosition);
+                lastPosition = mainBannerBot;
+                jQuery(sideBanner).css({
+                    position: 'absolute',
+                    display: 'block',
+                    top: mainBannerTop,
+                })
+            } else {
+                console.log('[POSITION] hide', mainBannerTop);
+                jQuery(sideBanner).css({
+                    display: 'none',
+                })
+            }
+        });
+        lastPosition = 0;
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        jQuery('.readmfooter .button').on('click', () => setTimeout(document.alignBanners, 1000));
+        document.alignBanners()
+    });
+
+</script>
+
+

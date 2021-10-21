@@ -1,0 +1,39 @@
+{% extends 'dashboard/layout2.html' %}
+{% block page_body %}
+{% load static %}
+{% load staticfiles %}
+<div class="form-wrapper reg">
+    <a href="/dashboard" class="logo large">hyper</a>
+    {% if register %}
+        <div>Thank you for registering! please check your email!</div>
+    {% endif %}
+    <form class="form" id="login-form"  accept-charset="UTF-8"  enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="fields">
+
+                                    {% for field in form %}
+                                         <div class="field">
+                                          {{ field.label_tag }}
+                                          {{ field }}
+                                          {% if field.help_text %}
+                                            <small style="color: grey">{{ field.help_text }}</small>
+                                          {% endif %}
+                                          {% for error in field.errors %}
+                                            <div class="error">{{ error }}</div>
+                                          {% endfor %}
+                                       </div>
+                                         {% endfor %}
+
+
+            <p class="comment">By clicking "Sign Up" you agree with the <a target="_blank" href="terms_and_conditions">Terms
+                &amp; Conditions</a></p>
+        </div>
+
+        <input type="submit" name="signup" value="Sign Up" class="button blue" data-disable-with="Submiting">
+    </form>
+</div>
+
+<div class="login-link">Already registered? <a href="signin">Log In</a></div>
+
+
+{% endblock %}

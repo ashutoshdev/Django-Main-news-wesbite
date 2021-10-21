@@ -1,0 +1,42 @@
+{% if is_vpn %}
+
+    <div id="is-vpn-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img src="/static/images/vpn.png" alt="Image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                VPN and Proxies are not allowed on our site
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <script type="application/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            let rootEl = document.documentElement;
+            let modal = document.querySelector('#is-vpn-modal');
+            let modalCloses = Array.prototype.slice.call(document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button'), 0);
+
+            modal.classList.add('is-active');
+            modalCloses.forEach(function ($el) {
+                $el.addEventListener('click', function () {
+                    rootEl.classList.remove('is-clipped');
+                    modal.classList.remove('is-active');
+                });
+            });
+        });
+    </script>
+
+{% endif %}

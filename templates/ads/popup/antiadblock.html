@@ -1,0 +1,33 @@
+
+{% if show_banners %}
+
+    {% load static %}
+
+    {% block additionalstatic %}
+        <script src="{% static 'js/ads.js' %}" type="application/javascript"></script>
+    {% endblock %}
+    <div class="container">
+    <div class="main">
+    <div id="exception-modal"  title="Please, turn off AdBlock">
+
+        <div class="dp"> Our website is made possible by displaying online advertisements to our visitors.
+                Please consider supporting us by disabling your ad blocker.
+
+            </div>
+
+
+        </div>
+    </div>
+        </div>
+       
+
+    <script type="application/javascript">
+        <!--document.addEventListener('DOMContentLoaded', function() {-->
+            <!--if (!document.getElementById('9e6e472119987c8ca3cc9d8b09755905')) {-->
+                <!--console.warn('ad_exception');-->
+                <!--document.querySelector('#exception-modal').classList.add('is-active');-->
+            <!--}-->
+        <!--});-->
+    </script>
+
+{% endif %}

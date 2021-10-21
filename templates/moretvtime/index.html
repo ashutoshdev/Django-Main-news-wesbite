@@ -1,0 +1,96 @@
+{% extends 'moretvtime/layout.html' %}
+
+{% block additionalstatic %}
+
+    {# Onesignal #}
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/static/css/jquery-ui.css"/>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+            {% if show_banners %}
+                appId: "9ebdc8c4-a7c2-44fe-add6-ef0bb3e98d90",
+            {% else %}
+                appId: "6b99f586-05ec-4bfa-af48-856d3dedae8a",
+            {% endif %}
+            });
+        });
+    </script>
+    {# Onesignal #}
+
+{% endblock %}
+
+{% block afterbody %}
+    {% if show_banners %}
+        {% include 'ads/progressbar_header.html' %}
+        <style>
+            #header {
+                top: 85px
+            }
+            body {
+                margin-top: 160px;
+            }
+        </style>
+    {% endif %}
+{% endblock %}
+
+{% block page_body %}
+    <main id="main" role="main" class="category">
+        <div id="category-content" class="music-section">
+
+            <div class="banner music">
+                <div class="holder">
+
+                    <div class="title-bar">
+                        <h1 class="heading">{{ category }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="holder">
+                <div id="article-container" class="article-holder">
+
+
+                    {% for data in aData %}
+
+                        <article class="article-block">
+                            <div class="image-holder ">
+                                <a href="/{{ data.category_id }}/{{ data.category.url }}/{{ data.url }}">
+                                    <img src="/article_images/{{ data.thumbnail }}" alt="" width="426">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <h3>
+                                    <a href="/{{ data.category_id }}/{{ data.category.url }}/{{ data.url }}">
+                                        {{ data.title }}</a>
+                                </h3>
+                            </div>
+                        </article>
+                    {% endfor %}
+
+                </div>
+                <!--                     <div class="text-wrap loading-more-category">
+                                    <a id="loading-more" href="https://www.moretvtime.com/category/Trending/#" class="view-all">LOADING...</a>
+                                 </div>-->
+            </div>
+        </div>
+    </main>
+
+    {# onesignal #}
+    <div class='onesignal-customlink-container'></div>
+    {# onesignal #}
+
+{% endblock %}
+
+{% block afterbody-end %}
+    {% if provider == 'swagbucks' %}
+        <script >
+            document.querySelectorAll('.article-blockb').forEach(e => {
+                e.addEventListener('click', (a) => {
+                    window.ncrvFireEvent && window.ncrvFireEvent();
+                })
+            })
+        </script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,234 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header">
+   <h2>
+      Setting of creative elements display on the website moretvtime.com
+   </h2>
+</section>
+<section class="content">
+   <div class="col-md-4">
+      <div class="block-wrapper">
+         <div class="widg">
+            <form  method="post" id="widget_form_submit">
+               {% csrf_token %}
+               <div class="left tab1" data-tab=".t1">
+                  <div class="set" id="widget-title-block">
+                     <div class="set">
+                        <label class="widget-title">Name</label>
+                        <div id="clientsTitle-element">
+                           <input type="text" name="clientsTitle_in" id="clientsTitle_in" value=""
+                              class="inp4 required" required/>
+                        </div>
+                        <input type="hidden" name="sid" id="widget_sid" value="{{SiteID}}"/>
+                        <input type="hidden" name="wid" id="wid"  value="{{WidgetID}}"/>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">Widget title</label>
+                     <div id="clientsTitle-element">
+                        <select class="form-control" id="widget_title" name="widget_title">
+                           <option value="Promoted Content">Promoted Content</option>
+                           <option value="Sponsored Content">Sponsored Content</option>
+                           <option value="Suggested News">Suggested News</option>
+                           <option value="You May Like">You May Like</option>
+                           <option value="Interesting For You">Interesting For You</option>
+                           <option value="More Cool Stuff">More Cool Stuff</span>
+                           <option value="Check This Out">Check This Out</span>
+                           <option value="More From Around The Web">More From Around The Web</option>
+                           <option value="Other">Other</option>
+                        </select>
+                     </div>
+                     <br/>
+                     <div class="set">
+                        <label class="widget-title"></label>
+                        <div id="clientsTitle-element" >
+                           <input type="text" name="widget_title_other" style="display:none" id="widget_title_other" value=""
+                              class="inp4 required"/>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">Type</label>
+                     <div id="clientsTitle-element">
+                        <select class="form-control" class="cusel select8" name="type" id="widget_type">
+                           <option>Under Article Widget</option>
+                           <option>In-Article Widget</option>
+                           <option>Header Widget</option>
+                           <option>Sidebar Widget</option>
+                           <option value="Headline In Picture Widget">Headline In Picture Widget</option>
+                           <option>Mobile site widget</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block-type">
+                     <label class="widget-title">Sub Type</label>
+                     <div id="clientsTitle-element">
+                        <select class="form-control" class="cusel select8" name="subtype" id="widget_subtype">
+                        </select>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">COLUMNS</label>
+                     <div id="clientsTitle-element">
+                        <div class="input-group spinner">
+                           <input type="text" class="form-control" id="widget_col" value="5"/>
+                           <div class="input-group-btn-vertical">
+                              <button class="btn btn-default" id="colup" type="button"><i class="fa fa-caret-up"></i>
+                              </button>
+                              <button class="btn btn-default" id="coldown" type="button"><i class="fa fa-caret-down"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="set row_hide_show" id="widget-title-block">
+                     <label class="widget-title">ROWS</label>
+                     <div id="clientsTitle-element">
+                        <div class="input-group spinner_a">
+                           <input type="text" class="form-control" id="widget_row" value="1"/>
+                           <div class="input-group-btn-vertical">
+                              <button class="btn btn-default" id="rowup" type="button"><i class="fa fa-caret-up"></i>
+                              </button>
+                              <button class="btn btn-default"  id="rowdown" type="button"><i class="fa fa-caret-down"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="hr set"></div>
+                  <div class="titl">Headline</div>
+                  <div class="set">
+                     <div class="text_style" id="text-style">
+                        <div id="text-bold" class="text_decoration text_bold" data-value-checked="bold"
+                           data-value-unchecked="normal"></div>
+                        <div id="text-italic" class="text_decoration text_italic" data-value-checked="italic"
+                           data-value-unchecked="normal"></div>
+                        <div id="text-underline" class="text_decoration text_underline"
+                           data-value-checked="underline" data-value-unchecked="none"></div>
+                        <div id="text-left" class="text_position text_left" data-value="left"></div>
+                        <div id="text-center" class="text_position text_center" data-value="center"></div>
+                        <div id="text-right" class="text_position text_right" data-value="right"></div>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">TEXT FONT</label>
+                     <div id="clientsTitle-element">
+                        <input id="font" type="text"/>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">Font Size</label>
+                     <div id="clientsTitle-element">
+                        <div class="input-group spinner_b">
+                           <input type="text" class="form-control" value="7 px"/>
+                           <div class="input-group-btn-vertical">
+                              <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i>
+                              </button>
+                              <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">Font Color</label>
+                     <div id="clientsTitle-element">
+                        <input type="text" id="swatches_a" class="form-control demo"
+                           data-swatches="#ef9a9a|#90caf9|#a5d6a7|#fff59d|#ffcc80|#bcaaa4|#eeeeee|#f44336|#2196f3|#4caf50|#ffeb3b|#ff9800|#795548|#9e9e9e"
+                           value="#ff7409"/>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">Hover Color</label>
+                     <div id="clientsTitle-element">
+                        <input type="text" id="swatches_b" class="form-control demo"
+                           data-swatches="#ef9a9a|#90caf9|#a5d6a7|#fff59d|#ffcc80|#bcaaa4|#eeeeee|#f44336|#2196f3|#4caf50|#ffeb3b|#ff9800|#795548|#9e9e9e"
+                           value="#2b397b"/>
+                     </div>
+                  </div>
+                  <div class="hr set"></div>
+                  <div class="titl">WIDGET TITLE</div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">TEXT TRANSFORM</label>
+                     <div id="clientsTitle-element">
+                        <select class="form-control" class="cusel select8"  id="wdget_transform" name="wdget_transform">
+                           <option value="uppercase">UPPERCASE</option>
+                           <option value="capitalize">CAPITALIZE</option>
+                           <option value="lowercase">LOWERCASE</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">TEXT FONT</label>
+                     <div id="clientsTitle-element">
+                        <input id="font_a" type="text"/>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">Font Size</label>
+                     <div id="clientsTitle-element">
+                        <div class="input-group spinner_c">
+                           <input type="text" class="form-control" value="7 px">
+                           <div class="input-group-btn-vertical">
+                              <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i>
+                              </button>
+                              <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">Font Color</label>
+                     <div id="clientsTitle-element">
+                        <input type="text" id="swatches_c" class="form-control demo"
+                           data-swatches="#ef9a9a|#90caf9|#a5d6a7|#fff59d|#ffcc80|#bcaaa4|#eeeeee|#f44336|#2196f3|#4caf50|#ffeb3b|#ff9800|#795548|#9e9e9e"
+                           value="#ff7409"/>
+                     </div>
+                  </div>
+                  <div class="hr set"></div>
+                  <div class="set" id="widget-title-block">
+                     <label class="widget-title">Background Color</label>
+                     <div id="clientsTitle-element">
+                        <input type="text" id="swatches_d" class="form-control demo"
+                           data-swatches="#ef9a9a|#90caf9|#a5d6a7|#fff59d|#ffcc80|#bcaaa4|#eeeeee|#f44336|#2196f3|#4caf50|#ffeb3b|#ff9800|#795548|#9e9e9e"
+                           value="#abcdef"/>
+                     </div>
+                  </div>
+               </div>
+               <div class="hr set"></div>
+               <section class="sidebar-right">
+                  <button class="btn btn-header js-cod save" id="js-btn-save" type="submit">Save</button>
+               </section>
+            </form>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-8">
+      <div class="block-wrapper">
+         <div class="widg">
+            <div class="widget-preview" style="top: 0px; width: 762px; left: 372px;">
+               <div id="MarketGidComposite0" class="widgetPreviewRoot">
+                  <div class="mgheader" >
+                     <span class="mghead" id="widget_title_output">Promoted Content</span>
+                  </div>
+                  <div class="mgbox flexslider carousel" id="widget_data_article">
+                     <!--ul class="slides" >
+                        <li></li>
+
+                        </ul-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<div id="dialog" title="Widget Html Code"></div>
+<style>
+   .form-control{
+   width: 51%;
+   }
+</style>
+<style id="widgetStyles" class="MarketGidC0"></style>
+{% endblock %}

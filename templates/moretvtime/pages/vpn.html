@@ -1,0 +1,52 @@
+{% extends 'moretvtime/layout.html' %}
+
+{% load static %}
+
+
+{% block page_body %}
+
+    <div class="vpn">
+        <div class="box">
+            <article class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                        <img src="/static/images/vpn.png" alt="Image">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            Our system detects that you are using fraudulent IP, VPN or proxy.
+                            Please use your real IP.
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+        .vpn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box {
+            padding-bottom: 5px;
+        }
+        .media {
+            font-size: 20px;
+            align-items: center;
+            display: flex;
+            text-align: left;
+        }
+    </style>
+
+{% endblock %}

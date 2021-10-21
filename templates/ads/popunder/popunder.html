@@ -1,0 +1,45 @@
+<html>
+<head>
+    <script> (function () {
+        window.resizeTo(0, 0);
+        window.moveTo(9999, 9999);
+    })();
+    </script>
+    <script>
+        window.openerExists = function () {
+            return window.opener != null;
+        };
+        window.openerHasFocus = function () {
+            return window.opener && window.opener.document && window.opener.document.hasFocus && window.opener.document.hasFocus();
+        };
+        window.isExpanded = function () {
+            return window.outerWidth > 200 && window.outerHeight > 100;
+        };
+
+        function loadURL() {
+            var popWidth = screen.availWidth;
+            var popHeight = screen.availHeight;
+            window.moveTo(0, 0);
+            window.resizeTo(popWidth, popHeight);
+            document.location.replace("{{ popunder | safe }}");
+        }
+
+        function showUpPop() {
+            //setTimeout(loadURL, 0);
+        }
+
+        var poll = setInterval(function () {
+            if (window.isExpanded() || true && !window.openerExists() || true && window.openerHasFocus()) {
+                clearInterval(poll);
+                //  showUpPop();
+            }
+        }, 1);
+        window.addEventListener("focus", loadURL);
+        window.addEventListener("blur", loadURL);
+        //window.addEventListener("resize", loadURL);
+        window.addEventListener("mouseover", loadURL);
+    </script>
+</head>
+<body>
+</body>
+</html>

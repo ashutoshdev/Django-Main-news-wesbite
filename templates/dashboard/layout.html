@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% block title %} {{ app_title }} {% endblock %}</title>
+
+    <link rel="stylesheet" href="/static/css/dashboard_main.css"/>
+    <link rel="icon" href="/static/images/{{ app_name }}.png"/>
+    <link rel="icon" href="/static/images/{{ app_name }}-55x55.png" sizes="32x32"/>
+    <link rel="icon" href="/static/images/{{ app_name }}.png" sizes="192x192"/>
+    <link rel="apple-touch-icon-precomposed" href="/static/images/{{ app_name }}.png"/>
+    <meta name="msapplication-TileImage" content="/static/images/{{ app_name }}.png"/>
+    <script type="application/javascript" src="/static/js/dashboard_main.js"></script>
+
+
+
+</head>
+
+{% include 'ads/dashboard_google-analytics.html' %}
+
+<body>
+
+{% block afterbody %}{% endblock %}
+
+{% include 'dashboard/common/header.html' %}
+
+{% block page_body %}{% endblock %}
+
+{% include 'dashboard/common/footer.html' %}
+
+</body>
+</html>

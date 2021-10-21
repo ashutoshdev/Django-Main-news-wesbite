@@ -1,0 +1,55 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header">
+   <h1>
+      #{{Supportid}}
+   </h1>
+</section>
+<section class="content">
+   <div class="table-wrapper table-default">
+      <div class="table-responsive">
+         <table class="table table-striped" id="BrowseTable">
+            <thead>
+               <tr>
+                  <th>ID<i class="icon info-icon" data-ot="Ticket unique identifier"></i></th>
+                  <th>Message<i class="icon info-icon" data-ot="Ticket creation date"></i></th>
+                  <th>Added By<i class="icon info-icon" data-ot="Ticket creation date"></i></th>
+                  <th>Created<i class="icon info-icon" data-ot="Ticket Subject"></i></th>
+               </tr>
+            </thead>
+            <tbody>
+               {% for data in MessageView%}
+               <tr id="tr_108428" class="">
+                  <td class="" style="text-align: left;">
+                     #{{data.id}}
+                  </td>
+                  <td class="" style="text-align: left;">
+                     {{data.text}}
+                  </td>
+                  <td class="" style="text-align: left;">
+                  {% if data.addedby == "User" %} {{data.addedby}} {% else %} {{'Admin'}} {% endif %}
+                  </td>
+                  <td class="" style="text-align: left;">
+                     {{data.created}}
+                  </td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <div class="form-block block-vidjet">
+      <form class="form ticket-from" method="post"  id="ticket-message-form">
+         {%csrf_token%}
+         <div>
+            <div class="form-group col-md-12">
+               <input type="hidden" name="sid" value="{{Supportid}}">
+               <label for="camp-add-input-3">Message:</label>
+               <textarea class="form-control" rows="6" name="text" required id="camp-add-input-3"></textarea>
+            </div>
+         </div>
+         <button type="submit" class="btn btn-header">Send</button>
+      </form>
+   </div>
+</section>
+{% endblock %}

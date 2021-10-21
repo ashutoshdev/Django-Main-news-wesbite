@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <header class="main-header">
+        <!--a href="members" class="logo">
+            <span class="logo-lg"><img src="/static/members/images/logo.png"></span>
+        </a-->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle"
+               data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+
+            <div class="t-navbar-custom-menu navbar-custom-menu">
+                <div class="balans-info t-balance">
+                    <span>Balance:</span>
+                    <div><p><b>{% if revenu_total_t.totalmoney %}{{revenu_total_t.totalmoney}} {% else %} {{0}} {% endif %}</b> $</p></div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" onclick="window.location = 'profile'"
+                            class="btn btn-header"><i class="fa fa-users"></i>{{request.user.email}}
+                    </button>
+                    <button type="button" onclick="window.location = '/logout'" class="btn btn-header">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>

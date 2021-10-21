@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="height: 100%">
+<div class="container" style="padding: 20px">
+
+    <div style="display: flex; flex-direction: column;">
+
+        <div class="ui container">
+            <form>
+                <div class="ui form">
+                    <div class="fields">
+
+                        <div class="field">
+                            <div class="ui">
+                                <label for="provider">Provider</label>
+                                <select id="provider">
+                                    <option value="-">All Providers</option>
+                                    {% for provider in providers %}
+                                        <option value="{{ provider }}">{{ provider }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui calendar" id="from">
+                                <label>From Date</label>
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input name="from" type="text" placeholder="Date/Time" value="{{ from_date|date:"m/d/Y 00:00:00"}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui calendar" id="to">
+                                <label>To Date</label>
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input name="to" type="text" placeholder="Date/Time" value="{% now "m/d/Y 23:59:59" %}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui">
+                                <label for="format">Split by</label>
+                                <select id="format">
+                                    <option value="hours">hours</option>
+                                    <option value="minutes">minutes</option>
+                                    <option value="date">date</option>
+                                    <option value="month">month</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="six wide field" style="padding-top: 20px;">
+                            <button id="btn-refresh" class="ui primary button">
+                                Refresh
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="ui form">
+                    <div class="fields">
+
+                        <div class="six wide field" style="padding-top: 20px;">
+                            <button id="btn-last-day" class="ui primary button">
+                                Last Day
+                            </button>
+                        </div>
+
+                        <div class="six wide field" style="padding-top: 20px;">
+                            <button id="btn-last-hour" class="ui primary button">
+                                Last Hour
+                            </button>
+                        </div>
+
+                        <div class="six wide field" style="padding-top: 20px;">
+                            <button id="btn-last-20-min" class="ui primary button">
+                                Last 20 minutes
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div style="width: 100%; height: 500px">
+        <canvas id="chart" width="400" height="400"></canvas>
+    </div>
+
+    <div style="min-height: 50%; padding: 40px">
+        <table id="table" class="display" width="100%">
+            <tfoot>
+                <tr>
+                    <th colspan="4" style="text-align:right">Total:</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+
+<div id="loader" class="ui segment" style="position: static; top:0; bottom: 0; left: 0; right: 0">
+    <div class="ui active dimmer">
+        <div class="ui text loader">Loading</div>
+    </div>
+    <p></p>
+</div>
+
+{% csrf_token %}
+<link rel="stylesheet" href="/static/css/Semantic-UI-CSS-master/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/Chart.min.js"></script>
+<script src="/static/js/Semantic-UI-CSS-master/semantic.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="/static/charts/index.js" type="application/javascript"></script>
+
+</body>
+</html>

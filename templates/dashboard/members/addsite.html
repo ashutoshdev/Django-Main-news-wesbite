@@ -1,0 +1,192 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header">
+   <h1>
+      Adding a site
+   </h1>
+</section>
+<section class="content">
+   <div class="col-md-12">
+      <div class="block-wrapper">
+         <div class="form-block block-vidjet">
+            <form id="form-add-site" method="post" role="section" class="form  ticket-from">
+               {% csrf_token %}
+               <div class="row">
+                  <div class="form-group col-md-5">
+                     <label for="Input_Site_Title">Name:</label>
+                     <input type="text" id="Input_Site_Title" name="name" value=""
+                        class="field js-add-site form-control" autocomplete="off" tabindex="1" required/>
+                  </div>
+                  <div class="form-group col-md-5">
+                     <label for="Input_Site_Url">Web address:</label>
+                     <input type="text" id="Input_Site_Url" name="webaddress"
+                        class="field js-add-site form-control" autocomplete="off" tabindex="1" value="" required/>
+                  </div>
+                  <div class="form-group col-md-5">
+                     <label for="Site_site_lang">Website language:</label>
+                     <div class="jq-selectbox jqselect" style="position: relative; z-index:100">
+                        <div class="jq-selectbox jqselect block block-custom-select option"
+                           >
+                           <select name="websitelanguage" class="form-control" class="block block-custom-select">
+                              <option value="en" class="block block-custom-select option">English</option>
+                              <option value="de" class="block block-custom-select option">German</option>
+                              <option value="fr" class="block block-custom-select option">French</option>
+                              <option value="ab" class="block block-custom-select option">Abkhazian</option>
+                              <option value="aa" class="block block-custom-select option">Afar</option>
+                              <option value="af" class="block block-custom-select option">Afrikaans</option>
+                              <option value="sq" class="block block-custom-select option">Albanian</option>
+                              <option value="am" class="block block-custom-select option">Amharic</option>
+                              <option value="ar" class="block block-custom-select option">Arabic</option>
+                              <option value="hy" class="block block-custom-select option">Armenian</option>
+                              <option value="as" class="block block-custom-select option">Assamese</option>
+                              <option value="ay" class="block block-custom-select option">Aymara</option>
+                              <option value="az" class="block block-custom-select option">Azerbaijani</option>
+                              <option value="ba" class="block block-custom-select option">Bashkir</option>
+                              <option value="eu" class="block block-custom-select option">Basque</option>
+                              <option value="be" class="block block-custom-select option">Belarusian</option>
+                              <option value="bn" class="block block-custom-select option">Bengali</option>
+                              <option value="bi" class="block block-custom-select option">Bislama</option>
+                              <option value="br" class="block block-custom-select option">Breton</option>
+                              <option value="bg" class="block block-custom-select option">Bulgarian</option>
+                              <option value="my" class="block block-custom-select option">Burmese</option>
+                              <option value="ca" class="block block-custom-select option">Catalan</option>
+                              <option value="zh" class="block block-custom-select option">Chinese</option>
+                              <option value="co" class="block block-custom-select option">Corsican</option>
+                              <option value="hr" class="block block-custom-select option">Croatian</option>
+                              <option value="cs" class="block block-custom-select option">Czech</option>
+                              <option value="da" class="block block-custom-select option">Danish</option>
+                              <option value="nl" class="block block-custom-select option">Dutch</option>
+                              <option value="dz" class="block block-custom-select option">Dzongkha</option>
+                              <option value="eo" class="block block-custom-select option">Esperanto</option>
+                              <option value="et" class="block block-custom-select option">Estonian</option>
+                              <option value="fo" class="block block-custom-select option">Faroese</option>
+                              <option value="fj" class="block block-custom-select option">Fijian</option>
+                              <option value="fi" class="block block-custom-select option">Finnish</option>
+                              <option value="gl" class="block block-custom-select option">Galician</option>
+                              <option value="ka" class="block block-custom-select option">Georgian</option>
+                              <option value="el" class="block block-custom-select option">Greek</option>
+                              <option value="gn" class="block block-custom-select option">Guarani</option>
+                              <option value="gu" class="block block-custom-select option">Gujarati</option>
+                              <option value="ha" class="block block-custom-select option">Hausa</option>
+                              <option value="hi" class="block block-custom-select option">Hindi</option>
+                              <option value="hu" class="block block-custom-select option">Hungarian</option>
+                              <option value="is" class="block block-custom-select option">Icelandic</option>
+                              <option value="id" class="block block-custom-select option">Indonesian</option>
+                              <option value="ia" class="block block-custom-select option">Interlingua</option>
+                              <option value="ie" class="block block-custom-select option">Interlingue</option>
+                              <option value="ik" class="block block-custom-select option">Inupiaq</option>
+                              <option value="ga" class="block block-custom-select option">Irish</option>
+                              <option value="it" class="block block-custom-select option">Italian</option>
+                              <option value="ja" class="block block-custom-select option">Japanese</option>
+                              <option value="kl" class="block block-custom-select option">Kalaallisut</option>
+                              <option value="kn" class="block block-custom-select option">Kannada</option>
+                              <option value="ks" class="block block-custom-select option">Kashmiri</option>
+                              <option value="kk" class="block block-custom-select option">Kazakh</option>
+                              <option value="km" class="block block-custom-select option">Khmer</option>
+                              <option value="rw" class="block block-custom-select option">Kinyarwanda</option>
+                              <option value="ko" class="block block-custom-select option">Korean</option>
+                              <option value="ku" class="block block-custom-select option">Kurdish</option>
+                              <option value="ky" class="block block-custom-select option">Kyrgyz</option>
+                              <option value="lo" class="block block-custom-select option">Lao</option>
+                              <option value="la" class="block block-custom-select option">Latin</option>
+                              <option value="lv" class="block block-custom-select option">Latvian</option>
+                              <option value="ln" class="block block-custom-select option">Lingala</option>
+                              <option value="lt" class="block block-custom-select option">Lithuanian</option>
+                              <option value="mk" class="block block-custom-select option">Macedonian</option>
+                              <option value="mg" class="block block-custom-select option">Malagasy</option>
+                              <option value="ms" class="block block-custom-select option">Malay</option>
+                              <option value="ml" class="block block-custom-select option">Malayalam</option>
+                              <option value="mt" class="block block-custom-select option">Maltese</option>
+                              <option value="mi" class="block block-custom-select option">Maori</option>
+                              <option value="mr" class="block block-custom-select option">Marathi</option>
+                              <option value="mn" class="block block-custom-select option">Mongolian</option>
+                              <option value="na" class="block block-custom-select option">Nauru</option>
+                              <option value="ne" class="block block-custom-select option">Nepali</option>
+                              <option value="no" class="block block-custom-select option">Norwegian</option>
+                              <option value="oc" class="block block-custom-select option">Occitan</option>
+                              <option value="om" class="block block-custom-select option">Oromo</option>
+                              <option value="ps" class="block block-custom-select option">Pashto</option>
+                              <option value="fa" class="block block-custom-select option">Persian</option>
+                              <option value="pl" class="block block-custom-select option">Polish</option>
+                              <option value="pt" class="block block-custom-select option">Portuguese</option>
+                              <option value="pa" class="block block-custom-select option">Punjabi</option>
+                              <option value="qu" class="block block-custom-select option">Quechua</option>
+                              <option value="ro" class="block block-custom-select option">Romanian</option>
+                              <option value="rm" class="block block-custom-select option">Romansh</option>
+                              <option value="rn" class="block block-custom-select option">Rundi</option>
+                              <option value="ru" class="block block-custom-select option">Russian</option>
+                              <option value="sm" class="block block-custom-select option">Samoan</option>
+                              <option value="sg" class="block block-custom-select option">Sango</option>
+                              <option value="sa" class="block block-custom-select option">Sanskrit</option>
+                              <option value="gd" class="block block-custom-select option">Scottish Gaelic</option>
+                              <option value="sr" class="block block-custom-select option">Serbian</option>
+                              <option value="sh" class="block block-custom-select option">Serbo-Croatian</option>
+                              <option value="sn" class="block block-custom-select option">Shona</option>
+                              <option value="sd" class="block block-custom-select option">Sindhi</option>
+                              <option value="si" class="block block-custom-select option">Sinhala</option>
+                              <option value="sk" class="block block-custom-select option">Slovak</option>
+                              <option value="sl" class="block block-custom-select option">Slovenian</option>
+                              <option value="so" class="block block-custom-select option">Somali</option>
+                              <option value="st" class="block block-custom-select option">Southern Sotho</option>
+                              <option value="es" class="block block-custom-select option">Spanish</option>
+                              <option value="su" class="block block-custom-select option">Sundanese</option>
+                              <option value="sw" class="block block-custom-select option">Swahili</option>
+                              <option value="ss" class="block block-custom-select option">Swati</option>
+                              <option value="sv" class="block block-custom-select option">Swedish</option>
+                              <option value="tl" class="block block-custom-select option">Tagalog</option>
+                              <option value="tg" class="block block-custom-select option">Tajik</option>
+                              <option value="ta" class="block block-custom-select option">Tamil</option>
+                              <option value="tt" class="block block-custom-select option">Tatar</option>
+                              <option value="te" class="block block-custom-select option">Telugu</option>
+                              <option value="th" class="block block-custom-select option">Thai</option>
+                              <option value="bo" class="block block-custom-select option">Tibetan</option>
+                              <option value="ti" class="block block-custom-select option">Tigrinya</option>
+                              <option value="to" class="block block-custom-select option">Tongan</option>
+                              <option value="ts" class="block block-custom-select option">Tsonga</option>
+                              <option value="tn" class="block block-custom-select option">Tswana</option>
+                              <option value="tr" class="block block-custom-select option">Turkish</option>
+                              <option value="tk" class="block block-custom-select option">Turkmen</option>
+                              <option value="tw" class="block block-custom-select option">Twi</option>
+                              <option value="uk" class="block block-custom-select option">Ukrainian</option>
+                              <option value="ur" class="block block-custom-select option">Urdu</option>
+                              <option value="uz" class="block block-custom-select option">Uzbek</option>
+                              <option value="vi" class="block block-custom-select option">Vietnamese</option>
+                              <option value="vo" class="block block-custom-select option">Volapük</option>
+                              <option value="cy" class="block block-custom-select option">Welsh</option>
+                              <option value="fy" class="block block-custom-select option">Western Frisian</option>
+                              <option value="wo" class="block block-custom-select option">Wolof</option>
+                              <option value="xh" class="block block-custom-select option">Xhosa</option>
+                              <option value="yo" class="block block-custom-select option">Yoruba</option>
+                              <option value="zu" class="block block-custom-select option">Zulu</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group col-md-5">
+                     <label for="siteHosts">Website traffic:</label>
+                     <div class="jq-selectbox jqselect" style="position: relative; z-index:100">
+                        <div id="siteHosts-styler" class="jq-selectbox jqselect"
+                           style="position: relative; z-index:100">
+                           <select class="form-control" name="websitetraffic">
+                              <option value="< 1 000">&lt; 1 000</option>
+                              <option value="1 000 - 5 000">1 000 - 5 000</option>
+                              <option value="5 000 - 10 000">5 000 - 10 000</option>
+                              <option value="10 000 - 50 000">10 000 - 50 000</option>
+                              <option value="50 000 - 100 000">50 000 - 100 000</option>
+                              <option value="> 100 000">&gt; 100 000</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-4">
+                     <button class="btn btn-header btn-mini" type="submit">Add</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}

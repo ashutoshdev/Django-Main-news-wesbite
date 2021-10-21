@@ -1,0 +1,53 @@
+<div id="bg"></div>
+<div id="wrapper">
+    <div class="page-wrap">
+        <div class="nav-drop">
+            <div class="jcf-scrollable">
+                <div class="nav-top">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="/static/images//moretvtime.png" alt="Moretvtime">
+                        </a>
+                        <a href="/" class="nav-opener close"><span>a</span></a>
+                    </div>
+                </div>
+                <div class="aside-holder">
+                    <nav id="aside-nav">
+                        <ul>
+                            {% for data in category_all %}
+                                <li class=""><a href="/category/{{ data.url }}">{{ data.name }}</a></li>
+                            {% endfor %}
+                            <li class="info-links first-info-link"><a href="/about">About Us</a></li>
+                            <li class="info-links"><a href="/privacy">Privacy</a></li>
+                            <li class="info-links"><a href="/term">TERMS</a></li>
+                            <li class="info-links"><a href="/contact">Contact</a></li>
+                            <li></li>
+                            <li class="info-links"><a href="/login">Login</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="nav-bottom">
+                     <span class="copyright-info">© 2018                                                    moretvtime.com.
+                     All rights reserved
+                     </span>
+                </div>
+            </div>
+        </div>
+
+        <header id="header" class="p_header">
+
+            <div class="logo-holder">
+                <a href="#" class="nav-opener hamburger"><span>Menu</span></a>
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/images/moretvtime.png" alt="Moretvtime">
+                    </a>
+                </div>
+            </div>
+            <div class="nav-holder"></div>
+            <div id="is-tablet"></div>
+            <div id="is-mobile"></div>
+        </header>
+
+    </div>
+</div>

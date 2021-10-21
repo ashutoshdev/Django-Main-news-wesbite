@@ -1,0 +1,8 @@
+
+{% if article.category.url != article.url %}
+    {# CANONICAL TAG #}
+    <link rel="canonical" href="/{{ data.category_id }}/{{ articleDataNext.category.url }}/{{ articleDataNext.category.url }}"/>
+    {# CANONICAL TAG #}
+{% endif %}
+
+

@@ -1,0 +1,75 @@
+<div class="modal" id="interstial-model">
+
+    <div class="modal-card" style="width:100%; height:100%; ">
+
+        <header class="modal-card-head" style="background-color:rgba(000,000,000,0.9); border-bottom: none !important;">
+            {% if show_banners %}
+                <div id="progressbar-text-continue" style="width:100%">
+                    <button class="button is-success blinking-button is-medium headclass delete">
+                    </button>
+                </div>
+            {% endif %}
+
+            {% if not show_banners %}
+                <div id="progressbar-text-continue" style="width:100%">
+                    <a href="" id="add-url" class="button is-success blinking-button is-medium show-popup delete headclass"></a>
+                </div>
+            {% endif %}
+
+            {% if is_mobile %}
+                <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+                    googletag.pubads().definePassback('/21771002246/mobile-320x480-a1', [320, 480]).display();
+                </script>
+            {% else %}
+                <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+                    googletag.pubads().definePassback('/21771002246/desktop-interstitial-970x250-a1', [970, 250]).display();
+                </script>
+            {% endif %}
+
+        </header>
+        <section class="modal-card-body mtt-interstitial-body" style="background-color:rgba(000,000,000,0.9);">
+
+            {% if is_mobile %}
+                <!-- /21771002246/mobile-320x480-a1 -->
+                <div id='div-gpt-ad-1550510514107-0' style='height:480px; width:320px;'>
+                    <script>
+                        googletag.cmd.push(function () {googletag.display('div-gpt-ad-1550510514107-0'); });
+                    </script>
+                </div>
+            {% else %}
+
+                <!-- /21771002246/desktop-interstitial-970x250-a1 -->
+                <div id='div-gpt-ad-1551418469742-0' style='height:250px; width:970px;'>
+                    <script>
+                        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1551418469742-0'); });
+                    </script>
+                </div>
+
+            {% endif %}
+        </section>
+
+    </div>
+</div>
+<style>
+    .headclass {
+        float: right;
+    }
+
+    .modal-card-foot, .modal-card-head {
+        padding: 0px;
+    }
+
+</style>
+{% if is_mobile %}
+    <style>
+        .button.is-medium {
+            font-size: 1rem;
+        }
+
+        .modal-card-foot, .modal-card-head {
+            padding: 0px;
+        }
+
+    </style>
+{% endif %}
+

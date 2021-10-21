@@ -1,0 +1,7 @@
+Django==2
+requests
+beautifulsoup4
+djangorestframework
+psycopg2
+django-countries
+geoip2

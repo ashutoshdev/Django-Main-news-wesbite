@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {{ app_title }} {% endblock %}</title>
+    <link rel="icon" href="/static/images/{{ app_name }}.png"/>
+    <link rel="icon" href="/static/images/{{ app_name }}-55x55.png" sizes="32x32"/>
+    <link rel="icon" href="/static/images/{{ app_name }}.png" sizes="192x192"/>
+    <link rel="apple-touch-icon-precomposed" href="/static/images/{{ app_name }}.png"/>
+    <meta name="msapplication-TileImage" content="/static/images/{{ app_name }}.png"/>
+    <link rel="stylesheet" href="/static/members/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/members/css/blue.css"/>
+    <link rel="stylesheet" href="/static/members/css/payclick.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/members/css/widget.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/members/css/fontselect-default.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/members/css/jquery.minicolors.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/members/css/flexslider.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="/static/members/js/jQuery-2.1.4.min.js"></script>
+    <script src="/static/members/js/app.js"></script>
+    <script type="text/javascript" src="/static/members/js/jquery.fontselect.js"></script>
+    <script type="text/javascript" src="/static/members/js/jquery.minicolors.js"></script>
+    <!--script type="text/javascript" src="/static/members/js/jquery.flexslider.js"></script-->
+    <script type="text/javascript" src="/static/members/js/jquery.flot.js"></script>
+    <script type="text/javascript" src="/static/members/js/jquery.flot.resize.min.js"></script>
+     <script src="/static/members/js/jquery.flot.pie.min.js"></script>
+    <script src="/static/members/js/jquery.flot.categories.min.js"></script>
+    <script src="/static/members/js/jquery.flot.time.min.js"></script>
+    <script type="text/javascript" src="/static/members/js/allcss.js"></script>
+    <script type="text/javascript" src="/static/members/js/mywidget.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="/static/members/js/bootstrap-datepicker.js"></script>
+
+
+
+</head>
+
+{% include 'ads/dashboard_google-analytics.html' %}
+
+<body class="skin-blue sidebar-mini">
+
+{% include 'dashboard/common/members_header.html' %}
+{% include 'dashboard/common/members_sidebar.html' %}
+ <div class="content-wrapper">
+{% block page_body %}{% endblock %}
+ </div>
+{% include 'dashboard/common/members_footer.html' %}
+
+</body>
+</html>

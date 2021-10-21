@@ -1,0 +1,111 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+{% load mathfilters %}
+<section class="content-header">
+   <h1>
+      Statictics
+   </h1>
+</section>
+<section class="content">
+   <div class="block-wrapper">
+      <form  method="post" id="form-filter">
+         {% csrf_token %}
+         <div class="col-md-6">
+            <div class="col-md-2" style="margin: 6px 0;">
+               Sites:
+            </div>
+            <div class="col-md-4">
+               <div class="jq-selectbox jqselect" style="position: relative; z-index:100">
+                  <div class="jq-selectbox jqselect sites_li option" style="position: relative; z-index:100">
+                     <select class="form-control" name="site">
+                        <option value="0" class="sites_li option" id="Filter_site_id-0">All</option>
+                        {% for data in allsite %}
+                        <option value="{{data.id}}" class="sites_li option" id="Filter_site_id-1">{{data.name}}</option>
+                        {% endfor %}
+                     </select>
+
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-2" style="margin: 6px 0;">
+               Widgets:
+            </div>
+            <div class="col-md-4">
+               <div class="jq-selectbox jqselect" style="position: relative; z-index:100">
+                  <div id="codes_select-styler" class="jq-selectbox jqselect codes_li option" style="position: relative; z-index:100">
+                     <select class="form-control" id="codes_select" name="widget">
+
+                        <option value="0" class="codes_li option" id="Filter_code_id-0">All</option>
+                        {% for data in widget %}
+                        <option value="{{data.wid}}" class="codes_li option" id="Filter_code_id-1">{{data.name}}</option>
+                        {% endfor %}
+                     </select>
+
+
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-5" id="sandbox-container">
+            <div class="input-group date col-md-5" style="float: left;">
+               <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input value="{{till}}" name="from" type="text" class="form-control">
+            </div>
+            <div class="col-md-1" style="text-align: center; margin: 6px 0;">
+               <i class="fa fa-minus"></i>
+            </div>
+            <div class="input-group date col-md-5" style="float: left;">
+               <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input value="{{from}}" name="till" type="text" class="form-control">
+            </div>
+         </div>
+         <div class="col-md-1">
+            <div class="btn-group" style="margin: 0;">
+               <button type="submit" id="js-refresh-data" class="btn btn-header">Update</button>
+            </div>
+         </div>
+
+      </form>
+   </div>
+   <div class="table-wrapper table-stat" id="js-statistic-table">
+      <div class="table-responsive">
+         <table class="table table-striped">
+            <tbody>
+               <tr>
+                  <td>
+                     Date <i class="icon info-icon" data-ot="Report date"></i>
+                  </td>
+                  <td>Views</td>
+                  <td>Clicks</td>
+                  <td>CTR
+                  <td>Income</td>
+                   <td>eCPM</td>
+
+
+               </tr>
+               {% for data in rdata%}
+
+               <tr>
+                  <td>{{data.date}}</td>
+                  <td>{{data.bannerloads}}</td>
+                  <td>{{data.clicks}}</td>
+                  <td>{{data.clicks |div:data.bannerloads | floatformat:4}}</td>
+                  <td>{{data.totalmoney}}</td>
+                  <td>{{data.clicks |div:data.bannerloads |div:data.bannerloads |mul:1000  | floatformat:4}}</td>
+
+               </tr>
+
+               {% endfor %}
+
+                <tr>
+                  <td>Total:</td>
+                  <td>{% if totaldata.bannerloads %}{{totaldata.bannerloads}} {% else %} {{0}} {% endif %}</td>
+                  <td>{% if totaldata.clicks %}{{totaldata.clicks}} {% else %} {{0}} {% endif %}</td>
+                  <td>{% if totaldata.clicks %}{{totaldata.clicks |div:totaldata.bannerloads | floatformat:4}} {% else %} {{0}} {% endif %}</td>
+                  <td>{% if totalmoney.totalmoney %}{{totalmoney.totalmoney}} {% else %} {{0}} {% endif %}</td>
+                  <td>{% if totaldata.clicks %}{{totaldata.clicks |div:totaldata.bannerloads |div:totaldata.bannerloads |mul:1000  | floatformat:4}} {% else %} {{0}} {% endif %}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</section>
+{% endblock %}

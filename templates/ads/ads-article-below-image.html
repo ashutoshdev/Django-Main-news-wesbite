@@ -1,0 +1,12 @@
+
+{% if not show_banners and not is_mobile %}
+
+    <div class="mtt-adunit">
+        {#  DFP - 250x970  #}
+        <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+            googletag.pubads().definePassback('/21771002246/desktop-970x250-a2', [970, 250]).display();
+        </script>
+        {#  DFP - 250x970  #}
+    </div>
+
+{% endif %}

@@ -1,0 +1,35 @@
+{% extends 'moretvtime/layout.html' %}
+
+{% load static %}
+
+{% block body_class %} archive category category-how-to-draw category-5 wp-custom-logo {% endblock %}
+
+{% block page_body %} 
+<main id="main" class="single-page" role="main" data-post-type="news" style="width: 90%; margin: auto">
+   <div class="holder">
+      <div id="content" style="width: 100%">
+          <article class="news-post">
+              <div class="news-article">
+                   <div id="home-main">
+                        <div id="post-area">
+                            {% for data in  page %}
+                <div id="content-area" style="min-height: 600px">
+                <div class="about-divider-container top-container">
+                <h1 class="about-divider-heading">{{data.title}}</h1>
+                </div>
+                <div class="about-content">
+                    <p>{{data.description | safe}}</p>
+
+
+                    </div>
+              </div>
+                             {% endfor %} 
+                            </div>
+                       </div>
+                  </div>
+          </article>
+      </div>  
+   </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'dashboard/members_layout.html' %}
+{% block page_body %}
+<section class="content-header">
+   <h1>
+      My sites
+   </h1>
+</section>
+<section class="content">
+   <div class="block-wrapper">
+      <div class="block-wrapper-left">
+         <div class="btn-group">
+            <a type="button" class="btn btn-dark" href="addsite">Add site
+            </a>
+         </div>
+      </div>
+   </div>
+   <div class="table-wrapper table-saits">
+      <div class="table-responsive">
+         <table class="table table-striped">
+            <tbody>
+               <tr>
+                  <td>Site name</td>
+                  <td>Site URL</td>
+                  <td>Status</td>
+                  <td>Administration</td>
+               </tr>
+               {% for data in SiteData%}
+               <tr>
+                  <td><a href="#">{% autoescape on %}{{data.name | safe}}{% endautoescape %}</a>
+                  </td>
+                  <td><a href="{% autoescape on %}{{data.webaddress | safe}}{% endautoescape %}" target="_blank">{% autoescape on %}{{data.webaddress | safe}}{% endautoescape %}</a></td>
+                  <td>
+                     <span> {% autoescape on %}{{data.site_status | safe}}{% endautoescape %}</span>
+                  </td>
+                  <td>
+                     <button type="button" title="Edit site widgets"
+                        onclick="window.location='widgets/{{data.id}}'"
+                        class="btn btn-header btn-actions">
+                     <i class="fa fa-cog"></i>
+                     </button>
+                     <form action="remove_items" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="item_id" value="{{data.id}}" />
+                        <button type="submit" class="btn delete-btn btn-dark btn-actions"
+                           data-name="{{data.name | safe}}" title="Remove the site"
+                           data-ot="Remove the site">
+                        <i class="fa fa-times-circle"></i>
+                        </button>
+                     </form>
+                  </td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      </div>
+   </div>
+</section>
+
+{% endblock %}

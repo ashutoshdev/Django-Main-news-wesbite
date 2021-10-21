@@ -1,0 +1,249 @@
+{% extends 'moretvtime/layout.html' %}
+{% load static %}
+{% load moretvtime_filters %}
+
+
+{% block ads-in-head %}
+    <script src="/js/tracker.js"></script>
+    {% include 'ads/ads-in-head.html' %}
+{% endblock %}
+
+{% block afterbody %}
+
+    {% if show_banners %}
+        {% include 'ads/progressbar.html' %}
+        <style>
+            .crypto-showifrmae {
+                margin-top: 0
+            }
+
+            #header {
+                top: 52px
+            }
+
+            #sidebar {
+                margin-top: 0
+            }
+
+            @media screen and (max-width: 780px) {
+                #header {
+                    top: 52px;
+                }
+            }
+
+            .video-js {
+                position: fixed;
+                bottom: 0;
+                right: 30px;
+                z-index: 999999;
+            }
+
+
+        </style>
+    {% else %}
+        <style>
+            .crypto-showifrmae {
+                margin-top: 24px
+            }
+
+            .video-js {
+                position: relative;
+
+            }
+            .video-js .vjs-big-play-button{
+              height: 16em;
+            }
+
+            .video-js .vjs-big-play-button .vjs-icon-placeholder:before, .video-js .vjs-modal-dialog, .vjs-button>.vjs-icon-placeholder:before, .vjs-modal-dialog .vjs-modal-dialog-content{
+               top: 243px;
+            }
+
+
+        </style>
+    {% endif %}
+{% endblock %}
+
+{% block page_body %}
+    <main id="main" role="main" data-post-type="articles" class="article">
+        <div class="holder">
+            <div id="content">
+                <div class="crypto-showifrmae banner-above-article">
+                    {% include 'ads/ads-above-article.html' %}
+                </div>
+                <article class="news-post emptied">
+                    <div class="news-article ">
+                        {# {% include 'ads/ads-video-player.html' %} #}
+                        <div class="main-article">
+                            <h1 class="title-gallery" id="title-gallery" data-post-id="140312">{{ data.title }}</h1>
+                        </div>
+                        {% if article.thumbnail_url %}
+                            {{ article.thumbnail_url | safe }}
+                        {% else %}
+                            <div class="main-article-image">
+                                <img src="/article_images/{{ data.thumbnail }}" alt="">
+                                <span class="main-article-image-meta">Getty Images</span>
+                            </div>
+                        {% endif %}
+                        {% include 'ads/ads-article-below-image.html' %}
+                        <div class="columns-holder">
+                            {{ data.article_text |safe }}
+                        </div>
+                    </div>
+
+                    {% if not show_banners %} {# Do not show button for logged users #}
+                        <div class="readmfooter">
+                            <div class="button is-danger is-large">
+                                Read More
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="gallery-nav-buttons">
+                        <div class="gallery-prev-button gallery-button">
+                            {% if prev_url %}
+                                <a class="article-btn-prev"
+                                   href="/{{ prev_url }}">Prev</a>
+                            {% endif %}
+                        </div>
+                        <div class="gallery-page-count">
+                            Page {{ data.order }}
+                        </div>
+                        {% if data.order == 1 %}
+                            <div class="allcnt" style="display: none">{{ all_article_count }}</div>
+                        {% endif %}
+                        <div class="catrl" style="display: none">{{ data.category.id }}</div>
+                        <div class="pgcnt" style="display: none">{{ data.order }}</div>
+                        <div class="article_url" style="display: none">{{ data.url }}</div>
+                        <div class="cat_url" style="display: none">{{ data.category.url }}</div>
+                        <div class="gallery-next-button gallery-button">
+                            {% if next_url %}
+                                <a class="article-btn-next"
+                                   href="/{{ next_url }}">Next</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <br/>
+                </article>
+                <div>
+                    {% include 'ads/ads-below-article.html' %}
+                </div>
+                <div class="recommended-heading-container">
+                    <span class="recommended-heading">Recommended</span>
+                </div>
+                <div class="zergnet-widget widget-loaded">
+                    <div class="zerglayoutcl">
+                        <div class="zergrow" id="nonative">
+                            {% for data in Recomendedarticle %}
+                                <div class="zergentity">
+                                    <a href="/articles/{{ data.category_id }}/{{ data.url }}" target="_blank"
+                                       rel="nofollow" class="zergimg">
+                                        <img src="/article_images/{{ data.thumbnail }}" nopin="true"
+                                             data-pin-no-hover="true">
+                                    </a>
+                                    <div class="zergheadline">
+                                        <a href="/articles/{{ data.category_id }}/{{ data.url }}" target="_blank"
+                                           rel="nofollow">
+                                            {{ data.title }}</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rest_article">
+                    <div class="zergnet-widget widget-loaded">
+                        <div class="zerglayoutcl">
+
+                            <div class="zergrow" {% if not show_banners %} id="showartcle"
+                                 style="display:none" {% endif %}>
+
+                                {% if not show_banners %}
+
+                                    {{ public_banners.0.code | safe }}
+                                {% endif %}
+
+                                {% for article in rest_of_article %}
+
+
+                                    <div class="zergentityt ph-rest-{{ forloop.counter }}" style="width:100%">
+                                        <a href="/{{ article.category }}/{{ article.category.url }}/{{ article.url }}"
+                                           target="_blank" rel="nofollow" class="zergimg">
+                                        </a>
+                                        <div class="zergheadline">
+                                            <a href="/{{ article.category }}/{{ article.category.url }}/{{ article.url }}"
+                                               target="_blank" rel="nofollow" style="font-size:36px">
+                                                {{ article.title }}
+                                            </a>
+                                        </div>
+                                        <div class="zergheadline">
+                                            {{ article.article_text | safe }}
+
+                                        </div>
+
+
+                                        {% if not show_banners %}
+                                            {% if forloop.counter == 1 %}
+                                                {{ public_banners.3.code | safe }}
+                                            {% endif %}
+                                            {% if forloop.counter == 3 %}
+                                                {{ public_banners.4.code | safe }}
+                                            {% endif %}
+                                            {% if forloop.counter == 2 %}
+                                                {{ public_banners.1.code | safe }}
+                                                {{ public_banners.2.code | safe }}
+                                            {% endif %}
+                                        {% endif %}
+
+                                    </div>
+
+
+                                {% endfor %}
+
+                                <div id="bottom-video" style="display:none">
+                                    {% if not show_banners %} {# Do not show button for logged users #}
+                                        {% if is_mobile %}
+                                            <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+                                            <script src="/static/js/video.min.js"></script>
+                                            <script src="/static/js/videojs.ads.min.js"></script>
+                                            <script src="/static/js/videojs.ima.js"></script>
+                                            <script src="/static/js/ads-video.js"></script>
+                                            <video id="content_video"
+                                                   style="height: 240px;width: 320px;text-align: center;margin: 0 auto;"
+                                                   class="video-js vjs-default-skin" controls preload="auto"
+                                                   width="auto" height="360">
+                                                <source src="/static/video/moretvtime.mp4" type="video/mp4"></source>
+                                            </video>
+                                            <link rel="stylesheet" href="/static/css/video-js.min.css">
+                                            <link rel="stylesheet" href="/static/css/videojs.ads.css"/>
+                                            <link rel="stylesheet" href="/static/css/videojs.ima.css"/>
+                                        {% else %}
+                                            <p>{{ banners|get_item:'bottomvideobanner'|safe }}</p>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="showifrmae" style="display:none">
+                    {% if not show_banners %}
+                        <p>{{ banners|get_item:'bottomiframe'|safe }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% if not is_mobile %}
+                <aside id="sidebar">
+                    {% include 'ads/ads-right.html' %}
+                </aside>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
+{% block afterbody-end %}
+    {% include 'ads/afterbody-end.html' %}
+{% endblock %}
+{% block before-footer %}
+    {% include 'ads/ads-before-footer.html' %}
+{% endblock %}

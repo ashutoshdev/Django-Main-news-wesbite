@@ -1,0 +1,16 @@
+
+{% if not show_banners %}
+    {% if is_mobile %}
+
+        {#  DFP Mobile - 250x300  #}
+        <script src='https://www.googletagservices.com/tag/js/gpt.js'>
+            googletag.pubads().definePassback('/21771002246/mobile-300x250-a2', [300, 250]).display();
+        </script>
+        {#  DFP - 250x300  #}
+
+    {% else %}
+
+    {% endif %}
+{% endif %}
+
+

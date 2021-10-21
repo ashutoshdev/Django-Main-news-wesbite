@@ -1,0 +1,48 @@
+{% extends 'moretvtime/layout.html' %}
+
+{% load static %}
+
+{% block body_class %} archive category category-how-to-draw category-5 wp-custom-logo {% endblock %}
+
+{% block page_body %}
+
+    <main id="main" role="main" class="category">
+    <div id="category-content" class="music-section">
+        <div class="banner music">
+            <div class="holder">
+
+                <div class="title-bar">
+                    <h1 class="heading">{{category}}</h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="holder">
+            <div id="article-container" class="article-holder">
+                
+               
+                {% for data in aData %}
+               
+                <article class="article-block">
+                    <div class="image-holder ">
+                        <a href="/{{data.category_id}}/{{data.category.url}}/{{data.url}}">
+                            <img src="/article_images/{{data.thumbnail}}" alt="" width="426">
+                        </a>
+                    </div>
+                    <div class="description">
+                        <h3>
+                            <a href="/{{data.category_id}}/{{data.category.url}}/{{data.url}}">
+                                {{data.title}}</a>
+                        </h3>
+                    </div>
+                </article>
+               {% endfor %}
+               
+            </div>
+            <!--                     <div class="text-wrap loading-more-category">
+                                <a id="loading-more" href="https://www.moretvtime.com/category/Trending/#" class="view-all">LOADING...</a>
+                             </div>-->
+        </div>
+    </div>
+</main>
+{% endblock %}
